@@ -1,0 +1,30 @@
+version: '2'
+services:
+  nginx:
+    image: nginx:1.11.7-alpine
+    restart: always
+    volumes:
+      - ./etc/nginx/ssl:/etc/nginx/ssl
+      - ./etc/nginx/conf.d:/etc/nginx/conf.d
+      - ./log:/var/log/nginx/
+    links:
+      - mattermost 
+    ports:
+      - "80:80"
+      - "443:443"
+  mattermost:
+    image: mritd/mattermost:3.6.1
+    restart: always
+    volumes:
+      - ./etc/mattermost/config.json:/usr/local/mattermost/config/config.json
+    links:
+      - mysql
+    ports:
+      - "8065:8065"
+  mysql:
+    image: mysql:5.7.17
+    restart: always
+    volumes:
+      - ./data/mysql:/var/lib/mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD
