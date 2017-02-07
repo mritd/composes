@@ -51,7 +51,7 @@ server {
        proxy_buffers 256 16k;
        proxy_buffer_size 16k;
        proxy_read_timeout 600s;
-       proxy_pass http://mattermost/;
+       proxy_pass http://mattermost:8065;
    }
 
    location / {
@@ -70,7 +70,7 @@ server {
        proxy_cache_min_uses 2;
        proxy_cache_use_stale timeout;
        proxy_cache_lock on;
-       proxy_pass http://mattermost/;
+       proxy_pass http://mattermost:8065;
    }
 
 }
