@@ -61,7 +61,7 @@
     },
     "SqlSettings": {
         "DriverName": "mysql",
-        "DataSource": "mmuser:mostest@tcp(dockerhost:3306)/mattermost_test?charset=utf8mb4,utf8",
+        "DataSource": "mmuser:mostest@tcp(mysql:3306)/mattermost?charset=utf8mb4,utf8",
         "DataSourceReplicas": [],
         "MaxIdleConns": 20,
         "MaxOpenConns": 300,
