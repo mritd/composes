@@ -17,6 +17,7 @@ services:
     restart: always
     volumes:
       - ./etc/mattermost/config.json:/usr/local/mattermost/config/config.json
+      - ./data/mattermost:/data/mattermost
     links:
       - mysql
   mysql:
