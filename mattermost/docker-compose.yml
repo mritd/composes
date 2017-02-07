@@ -19,8 +19,6 @@ services:
       - ./etc/mattermost/config.json:/usr/local/mattermost/config/config.json
     links:
       - mysql
-    ports:
-      - "8065:8065"
   mysql:
     image: mysql:5.7.17
     restart: always
