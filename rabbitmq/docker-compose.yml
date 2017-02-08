@@ -1,0 +1,14 @@
+version: '2'
+services:
+    rabbitmq:
+        image: rabbitmq:3.6.6-management-alpine
+        restart: always
+        volumes: 
+            - ./data:/var/lib/rabbitmq
+        ports:
+            - "4369:4369"
+            - "5671:5671"
+            - "5672:5672"
+            - "25672:25672"
+            - "15671:15671"
+            - "15672:15672"
