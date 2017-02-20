@@ -203,8 +203,8 @@
         "EnableDaily": false
     },
     "LocalizationSettings": {
-        "DefaultServerLocale": "en",
-        "DefaultClientLocale": "en",
+        "DefaultServerLocale": "zh_CN",
+        "DefaultClientLocale": "zh_CN",
         "AvailableLocales": ""
     },
     "SamlSettings": {
