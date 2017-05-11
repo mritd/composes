@@ -1,0 +1,19 @@
+version: '2'
+services:
+  centos:
+    image: centos:7
+    restart: always
+    command: /bin/bash -c "sleep 999999"
+    networks:
+      app_net:
+        ipv4_address: 10.10.1.34 
+networks:
+  app_net:
+    driver: macvlan
+    driver_opts:
+      parent: enp3s0 
+    ipam:
+      config:
+      - subnet: 10.10.1.0/24
+        gateway: 10.10.1.2
+#        ip_range: 10.25.87.32/28
