@@ -15,12 +15,13 @@ while true;do
     fi
 
     sleep 10
-    curl -iv https://www.google.com > /dev/null 2>&1
+    curl --connect-timeout 10 -m 10 -iv https://www.google.com > /dev/null 2>&1
     if [ "$?" != "0" ];then
         echo -e "`date "+%Y-%m-%d %H:%M:%S"`:""\033[31m tcpspeed connection timeout...\033[0m"
         let failedNum++
     else
         echo -e "`date "+%Y-%m-%d %H:%M:%S"`:""\033[32m tcpspeed is ok...\033[0m"
+        failedNum=0
     fi
 
 done
