@@ -16,7 +16,7 @@ while true;do
     remote_location=`ssh root@ss.x123.me cat /tmp/monitor_location`
 
     if [ "$remote_location" != "$cur_location" ];then
-        echo -e "\033[33mswitch monitor...\033[0m"
+        echo -e "\033[33mswitch monitor to $remote_location...\033[0m"
         exit 0
     fi
 
