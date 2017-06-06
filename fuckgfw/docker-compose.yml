@@ -1,7 +1,7 @@
 version: '2' 
 services:
-  tcpspeed:
-    image: mritd/tcpspeed
+  fuckgfw:
+    image: mritd/fuckgfw
     restart: always
     volumes: 
       - ./client_config.json:/fuckgfw/client_config.json
