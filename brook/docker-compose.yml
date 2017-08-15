@@ -1,0 +1,10 @@
+version: '2'
+services:
+  brook:
+    image: mritd/brook 
+    restart: always
+    ports:
+        - "10443:10443"
+    environment:
+      - BROOK_PASSWD 
+    command: brook bkserver -l :10443 -p $BROOK_PASSWD -t 10 -m chinaunicom_sales
