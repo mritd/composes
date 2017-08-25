@@ -6,7 +6,10 @@ services:
     ports:
       - "23:23"
       - "139:139/udp"    
+      - "135:135"
     environment:
-      - SS_CONFIG:$SS_CONFIG
-      - KCP_CONFIG:$KCP_CONFIG
-    command: -s "$SS_CONFIG" -k "$KCP_CONFIG" -x 
+      - SS_MODULE
+      - SS_CONFIG
+      - KCP_MODULE
+      - KCP_CONFIG
+    command: -m "$SS_MODULE" -s "$SS_CONFIG" -k "$KCP_CONFIG" -e "$KCP_MODULE" -x 
