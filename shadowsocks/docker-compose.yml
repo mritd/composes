@@ -1,7 +1,8 @@
 version: '2'
 services:
   shadowsocks:
-    image: mritd/shadowsocks:3.0.8
+    image: mritd/shadowsocks:3.1.0
+    container_name: shadowsocks
     restart: always
     ports:
       - "23:23"
