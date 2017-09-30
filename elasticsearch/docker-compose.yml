@@ -1,0 +1,9 @@
+version: '2'
+services: 
+  elasticsearch:
+    container_name: es
+    image: mritd/elasticsearch:5.5.2
+    restart: always
+    network_mode: "host"
+    volumes:
+      - ./config:/usr/local/elasticsearch/config
