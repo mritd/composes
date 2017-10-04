@@ -13,7 +13,7 @@ services:
       - "80:80"
       - "443:443"
   mattermost:
-    image: mritd/mattermost:3.6.1
+    image: mritd/mattermost:4.2.0
     restart: always
     volumes:
       - ./etc/mattermost/config.json:/usr/local/mattermost/config/config.json
