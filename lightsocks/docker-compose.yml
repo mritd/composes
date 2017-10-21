@@ -6,4 +6,4 @@ services:
     volumes: 
       - ./lightsocks.json:/root/.lightsocks.json 
     ports: 
-      - "1084:1084" 
+      - "56:56" 
