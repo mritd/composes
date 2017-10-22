@@ -9,4 +9,3 @@ services:
       - "56:56" 
     environment:
       - LIGHT_MODULE
-    command: $LIGHT_MODULE
