@@ -1,0 +1,11 @@
+version: '2'
+services:
+  logstash:
+    image: mritd/logstash:5.6.3
+    container_name: logstash
+    restart: always
+    ports:
+      - "5044:5044"
+    volumes:
+      - ./logstash.conf:/logstash.conf
+    command: -f /logstash.conf
