@@ -6,6 +6,8 @@ services:
     restart: always
     ports:
       - "5044:5044"
+      - "9600:9600"
     volumes:
-      - ./logstash.conf:/logstash.conf
-    command: -f /logstash.conf
+      - ./config:/usr/local/logstash/config
+      - ./data:/data
+    command: -f /usr/local/logstash/config/logstash.conf

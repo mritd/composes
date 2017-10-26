@@ -6,4 +6,7 @@ services:
     restart: always
     volumes:
       - ./filebeat.yml:/etc/filebeat/filebeat.yml
-      - /data/docker/containers:/var/lib/docker/containers
+      - /data/docker:/data/docker
+      - /var/log:/var/log
+      - /var/lib/docker/containers:/var/lib/docker/containers
+    #command: sleep 99999
