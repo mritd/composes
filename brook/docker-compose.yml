@@ -1,7 +1,7 @@
 version: '2'
 services:
   brook:
-    image: mritd/brook 
+    image: mritd/brook:v20171113 
     restart: always
     ports:
       - "68:68"
