@@ -3,3 +3,4 @@ fuckgfw/client_config.json
 fuckgfw/log
 lightsocks/lightsocks.json
 dnsmasq/dnsmasq.hosts
+privoxy/config
