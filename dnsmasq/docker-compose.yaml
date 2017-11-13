@@ -1,0 +1,10 @@
+version: '2'
+services:
+  dnsmasq:
+    image: mritd/dnsmasq
+    container_name: dnsmasq
+    restart: always
+    ports:
+      - "53:53/udp"
+    volumes:
+      - ./dnsmasq.hosts:/etc/dnsmasq.hosts
