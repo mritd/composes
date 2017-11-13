@@ -6,5 +6,6 @@ services:
     restart: always
     ports:
       - "53:53/udp"
+      - "53:53"
     volumes:
       - ./dnsmasq.hosts:/etc/dnsmasq.hosts
