@@ -1,0 +1,56 @@
+version: '2'
+
+services:
+  redis:
+    image: redis:3.2.11-alpine
+
+  postgres:
+    image: postgres:9.6.6-alpine
+    environment:
+      POSTGRES_USER: sentry
+      POSTGRES_PASSWORD: sentry
+      POSTGRES_DBNAME: sentry
+      POSTGRES_DBUSER: sentry
+      POSTGRES_DBPASS: sentry
+    volumes:
+     - ./pgdb:/var/lib/postgresql/data
+
+  sentry:
+    image: sentry:8.22.0
+    links:
+     - redis
+     - postgres
+    ports:
+     - 9000:9000
+    environment:
+      SENTRY_SECRET_KEY: 'jLsNbBoxXW8FptgmaJiRxiMTyZmcMHhh'
+      SENTRY_POSTGRES_HOST: postgres
+      SENTRY_DB_USER: sentry
+      SENTRY_DB_PASSWORD: sentry
+      SENTRY_REDIS_HOST: redis
+
+  cron:
+    image: sentry:8.22.0
+    links:
+     - redis
+     - postgres
+    command: "sentry run cron"
+    environment:
+      SENTRY_SECRET_KEY: 'jLsNbBoxXW8FptgmaJiRxiMTyZmcMHhh'
+      SENTRY_POSTGRES_HOST: postgres
+      SENTRY_DB_USER: sentry
+      SENTRY_DB_PASSWORD: sentry
+      SENTRY_REDIS_HOST: redis
+
+  worker:
+    image: sentry:8.22.0
+    links:
+     - redis
+     - postgres
+    command: "sentry run worker"
+    environment:
+      SENTRY_SECRET_KEY: 'jLsNbBoxXW8FptgmaJiRxiMTyZmcMHhh'
+      SENTRY_POSTGRES_HOST: postgres
+      SENTRY_DB_USER: sentry
+      SENTRY_DB_PASSWORD: sentry
+      SENTRY_REDIS_HOST: redis
