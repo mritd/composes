@@ -35,6 +35,8 @@ services:
       SENTRY_DB_USER: sentry
       SENTRY_DB_PASSWORD: sentry
       SENTRY_REDIS_HOST: redis
+    volumes:
+     - ./config.yml:/etc/sentry/config.yml
 
   cron:
     image: sentry:8.22.0
