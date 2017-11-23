@@ -39,6 +39,7 @@ services:
       SENTRY_REDIS_HOST: redis
     volumes:
      - ./config.yml:/etc/sentry/config.yml
+     - ./sentry.conf.py:/etc/sentry/sentry.conf.py
 
   cron:
     image: sentry:8.22.0
@@ -52,6 +53,9 @@ services:
       SENTRY_DB_USER: sentry
       SENTRY_DB_PASSWORD: sentry
       SENTRY_REDIS_HOST: redis
+    volumes:
+     - ./config.yml:/etc/sentry/config.yml
+     - ./sentry.conf.py:/etc/sentry/sentry.conf.py
 
   worker:
     image: sentry:8.22.0
@@ -65,3 +69,6 @@ services:
       SENTRY_DB_USER: sentry
       SENTRY_DB_PASSWORD: sentry
       SENTRY_REDIS_HOST: redis
+    volumes:
+     - ./config.yml:/etc/sentry/config.yml
+     - ./sentry.conf.py:/etc/sentry/sentry.conf.py
