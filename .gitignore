@@ -5,3 +5,6 @@ lightsocks/lightsocks.json
 dnsmasq/dnsmasq.hosts
 privoxy/config
 sentry/pgdb
+eolinker/log
+eolinker/mysql/data
+

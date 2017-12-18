@@ -1,0 +1,31 @@
+version: '2'
+services:
+  nginx:
+    image: nginx:1.13.7-alpine
+    container_name: nginx
+    restart: always
+    volumes:
+      - ./nginx/conf.d:/etc/nginx/conf.d
+      - ./log:/var/log/nginx/
+    volumes_from:
+      - eolinker
+    links:
+      - eolinker
+    ports:
+      - "80:80"
+      - "443:443"
+  mysql:
+    image: mysql:5.7.20
+    container_name: eolinker_mysql
+    restart: always
+    volumes:
+      - ./mysql/data:/var/lib/mysql
+      - ./mysql/init.sql:/docker-entrypoint-initdb.d/init.sql
+    environment:
+      - MYSQL_ROOT_PASSWORD
+  eolinker:
+    image: mritd/eolinker:3.1.8
+    container_name: eolinker
+    restart: always
+    links:
+      - mysql 
