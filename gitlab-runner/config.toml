@@ -1,0 +1,19 @@
+concurrent = 1
+check_interval = 0
+
+[[runners]]
+  name = "Test Runner"
+  url = "http://git.mritd.me"
+  token = "c279ec1ac08aec98c7141c7cf2d474"
+  executor = "docker"
+  builds_dir = "/gitlab/runner-builds"
+  cache_dir = "/gitlab/runner-cache"
+  [runners.docker]
+    tls_verify = false
+    image = "debian"
+    privileged = false
+    disable_cache = false
+    shm_size = 0
+    volumes = ["/data/gitlab-runner:/gitlab","/var/run/docker.sock:/var/run/docker.sock","/data/maven_repo:/data/repo","/data/maven_repo:/data/maven","/data/gradle:/data/gradle","/data/sonar_cache:/root/.sonar","/data/androidsdk:/usr/local/android","/data/node_modules:/data/node_modules"]
+    extra_hosts = ["git.mritd.me:172.16.0.37"]
+  [runners.cache]
