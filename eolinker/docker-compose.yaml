@@ -24,7 +24,7 @@ services:
     environment:
       - MYSQL_ROOT_PASSWORD
   eolinker:
-    image: mritd/eolinker:3.1.8
+    image: mritd/eolinker:3.1.9
     container_name: eolinker
     restart: always
     links:
