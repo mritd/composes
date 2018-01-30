@@ -8,5 +8,5 @@ sentry/pgdb
 eolinker/log
 eolinker/mysql/data
 nginx/ssl
-nginx/config.d
+nginx/conf.d
 nginx/log
