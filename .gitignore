@@ -7,4 +7,6 @@ privoxy/config
 sentry/pgdb
 eolinker/log
 eolinker/mysql/data
-
+nginx/ssl
+nginx/config.d
+nginx/log
