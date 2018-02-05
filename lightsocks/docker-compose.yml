@@ -1,7 +1,7 @@
 version: '2' 
 services:
   lightsocks:
-    image: mritd/lightsocks:1.0.4
+    image: mritd/lightsocks:1.0.6
     restart: always
     volumes: 
       - ./lightsocks.json:/root/.lightsocks.json 
