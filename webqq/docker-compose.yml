@@ -1,0 +1,12 @@
+version: '2'
+services: 
+  webqq:
+    container_name: webqq
+    image: webqq
+    restart: always
+    ports:
+      - "5000:5000"
+#    environment:
+#      - MOJO_WEBQQ_QRCODE_PATH="/data"
+#    volumes:
+#      - ./:/data/
