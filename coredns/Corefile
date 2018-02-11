@@ -1,0 +1,13 @@
+.:53 {
+    cache 300
+    hosts /etc/core.hosts {
+    	fallthrough
+	}
+    proxy . 114.114.114.114:53 {
+        protocol dns
+       	fail_timeout 2s
+	    max_fails 3
+    }
+    errors
+    log . "{remote} - [{when}] {>id} {type} {class} {name} {proto} {size} {>do} {>bufsize} {rcode} {>rflags} {rsize} {duration}"
+}
