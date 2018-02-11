@@ -6,8 +6,9 @@ services:
     restart: always
     ports:
       - "152:152"
-      - "153:153"    
-      - "156:156"
+      - "152:152/udp"
+      - "153:153"
+      - "153:153/udp"
     environment:
       - DCMD
     command: ${DCMD}

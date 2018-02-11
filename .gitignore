@@ -10,3 +10,4 @@ eolinker/mysql/data
 nginx/ssl
 nginx/conf.d
 nginx/log
+tor/torrc
