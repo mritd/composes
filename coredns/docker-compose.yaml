@@ -1,4 +1,4 @@
-version: '2'
+version: '3'
 services:
   coredns:
     image: coredns/coredns:1.0.5
