@@ -1,0 +1,12 @@
+version: '3'
+services:
+  coredns:
+    image: coredns/coredns:1.0.5
+    container_name: coredns
+    restart: always
+    ports:
+      - "53:53/udp"
+    volumes:
+      - ./Corefile:/etc/Corefile
+      - ./core.hosts:/etc/core.hosts
+    command: -conf /etc/Corefile
