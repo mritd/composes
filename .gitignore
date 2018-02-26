@@ -12,3 +12,4 @@ nginx/conf.d
 nginx/log
 tor/torrc
 coredns/core.hosts
+mysql/data
