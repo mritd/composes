@@ -4,8 +4,7 @@ services:
     image: coredns/coredns:1.0.5
     container_name: coredns
     restart: always
-    ports:
-      - "53:53/udp"
+    network_mode: "host"
     volumes:
       - ./Corefile:/etc/Corefile
       - ./core.hosts:/etc/core.hosts
