@@ -1,0 +1,31 @@
+version: '3'
+services:
+  taiga-front:
+    image: taiga-front
+    container_name: taiga-front
+    restart: always
+    volumes:
+      - "./conf/taiga-front/conf.json:/usr/local/taiga-front/conf.json"
+      - "./conf/taiga-front/nginx/ssl:/etc/nginx/ssl"
+      - "./conf/taiga-front/nginx/conf.d:/etc/nginx/conf.d"
+      - "./conf/taiga-front/nginx/log:/var/log/nginx"
+      - "data:/data"
+    ports:
+      - "80:80"
+      - "443:443"
+  taiga-back:
+    image: taiga-back
+    container_name: taiga-back
+    restart: always
+    volumes:
+      - "./conf/taiga-back/local.py:/usr/local/taiga-back/settings/local.py"
+      - "data:/data"
+  taiga-events:
+    image: taiga-events
+    container_name: taiga-events
+    restart: always
+    volumes:
+      - "./conf/taiga-events/config.json:/usr/local/taiga-events/config.json"
+
+volumes:
+  data:
