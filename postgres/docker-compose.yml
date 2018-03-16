@@ -11,3 +11,5 @@ services:
     environment:
       - POSTGRES_USER
       - POSTGRES_PASSWORD
+volumes:
+  postgres_data:
