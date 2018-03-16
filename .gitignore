@@ -13,3 +13,5 @@ nginx/log
 tor/torrc
 coredns/core.hosts
 mysql/data
+taiga/conf/nginx/ssl
+taiga/conf/nginx/log

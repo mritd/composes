@@ -1,0 +1,11 @@
+{
+    "api": "https://kb.mritd.me/api/v1/",
+    "eventsUrl": "wss://kb.mritd.me/events",
+    "debug": "true",
+    "publicRegisterEnabled": true,
+    "feedbackEnabled": true,
+    "privacyPolicyUrl": null,
+    "termsOfServiceUrl": null,
+    "maxUploadFileSize": null,
+    "contribPlugins": []
+}
