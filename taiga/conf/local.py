@@ -36,7 +36,7 @@ DATABASES = {
         'NAME': 'taiga',
         'USER': 'taiga',
         'PASSWORD': 'taiga',
-        'HOST': '192.168.1.20',
+        'HOST': '172.16.0.30',
         'PORT': '5432',
     }
 }
@@ -60,7 +60,7 @@ MEDIA_ROOT = '/data/taiga/media'
 STATIC_ROOT = '/data/taiga/static'
 
 EVENTS_PUSH_BACKEND = "taiga.events.backends.rabbitmq.EventsPushBackend"
-EVENTS_PUSH_BACKEND_OPTIONS = {"url": "amqp://taiga:taiga@192.168.1.20:5672/taiga"}
+EVENTS_PUSH_BACKEND_OPTIONS = {"url": "amqp://taiga:taiga@172.16.0.30:5672/taiga"}
 
 
 #########################################
