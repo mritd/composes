@@ -11,8 +11,7 @@ services:
       - "./conf/nginx/log:/var/log/nginx"
       - "data:/data"
     ports:
-      - "80:80"
-      - "443:443"
+      - "8001:80"
   taiga-back:
     image: taiga-back
     container_name: taiga-back

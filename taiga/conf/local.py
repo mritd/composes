@@ -22,7 +22,7 @@ from .development import *
 ## GENERIC
 #########################################
 
-DEBUG = False
+DEBUG = True
 
 ADMINS = (
     ("mritd", "mritd1234@gmail.com"),
@@ -56,8 +56,11 @@ DATABASES = {
 
 SITE_ID = "api"
 
-MEDIA_ROOT = '/data/taiga/media'
-STATIC_ROOT = '/data/taiga/static'
+MEDIA_URL = "https://kb.mritd.me/media/"
+STATIC_URL = "https://kb.mritd.me/static/"
+
+MEDIA_ROOT = "/data/taiga/media"
+STATIC_ROOT = "/data/taiga/static"
 
 EVENTS_PUSH_BACKEND = "taiga.events.backends.rabbitmq.EventsPushBackend"
 EVENTS_PUSH_BACKEND_OPTIONS = {"url": "amqp://taiga:taiga@172.16.0.30:5672/taiga"}
