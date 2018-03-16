@@ -5,7 +5,7 @@ services:
     container_name: rabbitmq
     restart: always
     volumes: 
-      - rabbitmq_data:/var/lib/rabbitmq
+      - data:/var/lib/rabbitmq
     ports:
       - "4369:4369"
       - "5671:5671"
@@ -17,4 +17,4 @@ services:
       - RABBITMQ_DEFAULT_USER
       - RABBITMQ_DEFAULT_PASS
 volumes:
-  rabbitmq_data:
+  data:
