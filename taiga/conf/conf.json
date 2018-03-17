@@ -1,11 +1,22 @@
 {
     "api": "https://kb.mritd.me/api/v1/",
     "eventsUrl": "wss://kb.mritd.me/events",
-    "debug": "true",
+    "eventsMaxMissedHeartbeats": 5,
+    "eventsHeartbeatIntervalTime": 60000,
+    "eventsReconnectTryInterval": 10000,
+    "debug": true,
+    "debugInfo": false,
+    "defaultLanguage": "zh-hans",
+    "themes": ["taiga"],
+    "defaultTheme": "taiga",
     "publicRegisterEnabled": true,
     "feedbackEnabled": true,
+    "supportUrl": "https://tree.taiga.io/support",
     "privacyPolicyUrl": null,
     "termsOfServiceUrl": null,
     "maxUploadFileSize": null,
-    "contribPlugins": []
+    "contribPlugins": [],
+    "tribeHost": null,
+    "importers": [],
+    "gravatar": false
 }
