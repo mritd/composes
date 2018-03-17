@@ -1,7 +1,7 @@
 version: '2'
 services:
   dragonite:
-    image: dragonitenetwork/dragonite-java:0.4.0-alpine
+    image: dragonitenetwork/dragonite-java:fwd-0.4.0-prx-0.4.0-alpine
     container_name: dragonite
     restart: always
     ports:
