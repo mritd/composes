@@ -1,8 +1,8 @@
 version: '3'
 services:
-  nginx:
+  tcp_proxy:
     image: nginx:1.13.12-alpine
-    container_name: nginx
+    container_name: tcp_proxy
     restart: always
     volumes:
       - ./nginx.conf:/etc/nginx/nginx.conf
