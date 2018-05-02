@@ -12,3 +12,13 @@ services:
     environment:
       - DCMD
     command: ${DCMD}
+  dragonite_bak:
+    image: dragonitenetwork/dragonite-java:fwd-0.4.0-prx-0.4.0-alpine
+    container_name: dragonite_bak
+    restart: always
+    ports:
+      - "158:153"
+      - "158:153/udp"
+    environment:
+      - BAKDCMD
+    command: ${BAKDCMD}
