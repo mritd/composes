@@ -1,4 +1,4 @@
-version: '2'
+version: '3'
 services:
   dragonite:
     image: dragonitenetwork/dragonite-java:fwd-0.4.0-prx-0.4.0-alpine
