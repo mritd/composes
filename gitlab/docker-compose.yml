@@ -1,18 +1,123 @@
-version: '2'
+# config refs ==> https://gitlab.com/gitlab-org/omnibus-gitlab/blob/master/files/gitlab-config-template/gitlab.rb.template
+version: '3'
 services:
-  web:
-    image: 'gitlab/gitlab-ce:9.1.3-ce.0'
+  gitlab:
+    image: 'gitlab/gitlab-ce:10.4.3-ce.0'
+    container_name: gitlab
     restart: always
-    hostname: 'vm.com'
+    hostname: 'gitlab.mritd.me'
     environment:
       GITLAB_OMNIBUS_CONFIG: |
-        external_url 'http://gitlab.vm.com'
-        # Add any other gitlab.rb configuration here, each on its own line
+        external_url 'https://gitlab.mritd.me'
+        nginx['redirect_http_to_https'] = true
+        nginx['ssl_certificate'] = "/etc/gitlab/ssl/mritd.me.cer"
+        nginx['ssl_certificate_key'] = "/etc/gitlab/ssl/mritd.me.key"
+        nginx['real_ip_header'] = 'X-Real-IP'
+        nginx['real_ip_recursive'] = 'on'
+        #gitlab_rails['ldap_enabled'] = true
+        #gitlab_rails['ldap_servers'] = YAML.load <<-EOS # remember to close this block with 'EOS' below
+        #main: # 'main' is the GitLab 'provider ID' of this LDAP server
+        #  ## label
+        #  #
+        #  # A human-friendly name for your LDAP server. It is OK to change the label later,
+        #  # for instance if you find out it is too large to fit on the web page.
+        #  #
+        #  # Example: 'Paris' or 'Acme, Ltd.'
+        #  label: 'LDAP'
+
+        #  host: 'mail.mritd.me'
+        #  port: 389 # or 636
+        #  uid: 'uid'
+        #  method: 'plain' # "tls" or "ssl" or "plain"
+        #  bind_dn: 'uid=zimbra,cn=admins,cn=zimbra'
+        #  password: 'PASSWORD'
+
+        #  # This setting specifies if LDAP server is Active Directory LDAP server.
+        #  # For non AD servers it skips the AD specific queries.
+        #  # If your LDAP server is not AD, set this to false.
+        #  active_directory: true
+
+        #  # If allow_username_or_email_login is enabled, GitLab will ignore everything
+        #  # after the first '@' in the LDAP username submitted by the user on login.
+        #  #
+        #  # Example:
+        #  # - the user enters 'jane.doe@example.com' and 'p@ssw0rd' as LDAP credentials;
+        #  # - GitLab queries the LDAP server with 'jane.doe' and 'p@ssw0rd'.
+        #  #
+        #  # If you are using "uid: 'userPrincipalName'" on ActiveDirectory you need to
+        #  # disable this setting, because the userPrincipalName contains an '@'.
+        #  allow_username_or_email_login: true
+
+        #  # Base where we can search for users
+        #  #
+        #  #   Ex. ou=People,dc=gitlab,dc=example
+        #  #
+        #  base: ''
+
+        #  # Filter LDAP users
+        #  #
+        #  #   Format: RFC 4515 http://tools.ietf.org/search/rfc4515
+        #  #   Ex. (employeeType=developer)
+        #  #
+        #  #   Note: GitLab does not support omniauth-ldap's custom filter syntax.
+        #  #
+        #  user_filter: ''
+        #EOS
+
+        gitlab_rails['log_directory'] = "/var/log/gitlab/gitlab-rails"
+        unicorn['log_directory'] = "/var/log/gitlab/unicorn"
+        registry['log_directory'] = "/var/log/gitlab/registry"
+        # Below are some of the default settings
+        logging['logrotate_frequency'] = "daily" # rotate logs daily
+        logging['logrotate_size'] = nil # do not rotate by size by default
+        logging['logrotate_rotate'] = 30 # keep 30 rotated logs
+        logging['logrotate_compress'] = "compress" # see 'man logrotate'
+        logging['logrotate_method'] = "copytruncate" # see 'man logrotate'
+        logging['logrotate_postrotate'] = nil # no postrotate command by default
+        logging['logrotate_dateformat'] = nil # use date extensions for rotated files rather than numbers e.g. a value of "-%Y-%m-%d" would give rotated files like p
+        # You can add overrides per service
+        nginx['logrotate_frequency'] = nil
+        nginx['logrotate_size'] = "200M"
+        # You can also disable the built-in logrotate service if you want
+        logrotate['enable'] = false
+        gitlab_rails['smtp_enable'] = true
+        gitlab_rails['smtp_address'] = "mail.mritd.me"
+        gitlab_rails['smtp_port'] = 25
+        gitlab_rails['smtp_user_name'] = "no-reply@mritd.me"
+        gitlab_rails['smtp_password'] = "PASSWORD"
+        gitlab_rails['smtp_domain'] = "mritd.me"
+        gitlab_rails['smtp_authentication'] = "login"
+        gitlab_rails['smtp_enable_starttls_auto'] = true
+        gitlab_rails['smtp_openssl_verify_mode'] = 'peer'
+
+        # If your SMTP server does not like the default 'From: gitlab@localhost' you
+        # can change the 'From' with this setting.
+        gitlab_rails['gitlab_email_from'] = 'gitlab@mritd.me'
+        gitlab_rails['gitlab_email_reply_to'] = 'no-reply@mritd.me'
+        gitlab_rails['initial_root_password'] = 'PASSWORD'
+        gitlab_rails['initial_shared_runners_registration_token'] = "iuLaUhGZYyFgTxAyZ6HbdFUZ"
+    networks:
+      macvlan:
+        ipv4_address: 172.16.0.70
     ports:
-      - '8080:80'
-      - '8443:443'
-      - '8022:22'
+      - '80:80'
+      - '443:443'
+      - '22:22'
     volumes:
-      - '/data/gitlab/config:/etc/gitlab'
-      - '/data/gitlab/logs:/var/log/gitlab'
-      - '/data/gitlab/data:/var/opt/gitlab'
+      - config:/etc/gitlab
+      - logs:/var/log/gitlab
+      - data:/var/opt/gitlab
+
+networks:
+  macvlan:
+    driver: macvlan
+    driver_opts:
+      parent: ens18
+    ipam:
+      config:
+      - subnet: 172.16.0.0/19
+
+volumes:
+  config:
+  logs:
+  data:

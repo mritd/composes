@@ -1,0 +1,11 @@
+version: '3'
+services:
+  coredns:
+    image: coredns/coredns:1.0.6
+    container_name: coredns
+    restart: always
+    network_mode: "host"
+    volumes:
+      - ./Corefile:/etc/Corefile
+      - ./core.hosts:/etc/core.hosts
+    command: -conf /etc/Corefile

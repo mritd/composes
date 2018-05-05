@@ -1,8 +1,8 @@
-version: '2'
+version: '3'
 services: 
   elasticsearch:
     container_name: es
-    image: mritd/elasticsearch:5.5.2
+    image: mritd/elasticsearch:6.2.1
     restart: always
     network_mode: "host"
     volumes:
