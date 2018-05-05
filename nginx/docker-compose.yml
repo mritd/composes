@@ -4,6 +4,8 @@ services:
     image: nginx:1.13.12-alpine
     container_name: nginx
     restart: always
+    networks:
+      - nginx
     volumes:
       - ./ssl:/etc/nginx/ssl
       - ./conf.d:/etc/nginx/conf.d
@@ -11,3 +13,5 @@ services:
     ports:
       - "80:80"
       - "443:443"
+networks:
+  nginx:
