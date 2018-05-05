@@ -10,6 +10,7 @@ services:
       - ./ssl:/etc/nginx/ssl
       - ./conf.d:/etc/nginx/conf.d
       - ./log:/var/log/nginx/
+      - ./vippasswd:/etc/nginx/conf/vippasswd
     ports:
       - "80:80"
       - "443:443"
