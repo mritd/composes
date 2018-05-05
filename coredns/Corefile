@@ -1,6 +1,7 @@
 .:53 {
+    bind 0.0.0.0
     cache 300
-    hosts /etc/core.hosts {
+    hosts /etc/coredns/core.hosts {
     	fallthrough
 	}
     proxy . 114.114.114.114:53 {
