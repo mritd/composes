@@ -1,4 +1,4 @@
-version: '3'
+version: '3.5'
 services:
   nginx:
     image: nginx:1.13.12-alpine
@@ -15,3 +15,5 @@ services:
       - "443:443"
 networks:
   nginx:
+    external:
+      name: nginx
