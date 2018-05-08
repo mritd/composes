@@ -56,6 +56,12 @@ services:
     networks:
       - nginx
     restart: always
+  crxdl:
+    image: mritd/crxdl:v1.0.0
+    container_name: crxdl
+    networks:
+      - nginx
+    restart: always
 
 networks:
   nginx:
