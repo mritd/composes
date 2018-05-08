@@ -1,0 +1,12 @@
+version: '3.5'
+services:
+  hashi-ui:
+    image: hashi-ui:v0.25.0
+    container_name: hashi-ui
+    restart: always
+    networks:
+      - nginx
+networks:
+  nginx:
+    external:
+      name: nginx
