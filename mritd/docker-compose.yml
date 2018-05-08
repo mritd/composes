@@ -56,6 +56,12 @@ services:
     networks:
       - nginx
     restart: always
+  shells:
+    image: mritd/shells
+    container_name: shells
+    networks:
+      - nginx
+    restart: always
 
 networks:
   nginx:
