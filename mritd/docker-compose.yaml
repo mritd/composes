@@ -24,24 +24,6 @@ services:
     networks:
       - nginx
     restart: always  
-  piwik_db:
-    image: mysql:5.7.17
-    container_name: piwik_mysql
-    networks:
-      - nginx
-    restart: always
-    volumes:
-      - /data/piwik/mysql/runtime:/var/lib/mysql
-  piwik_app:
-    image: mritd/piwik:3.3.0
-    container_name: piwik
-    networks:
-      - nginx
-    restart: always
-    links:
-      - piwik_db
-    volumes:
-      - /data/piwik/config:/var/www/html/config
   radicale:
     image: mritd/radicale:2.1.5
     container_name: 2do
