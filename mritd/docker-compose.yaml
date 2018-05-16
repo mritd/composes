@@ -50,6 +50,12 @@ services:
     networks:
       - nginx
     restart: always
+  jsonon:
+    image: mritd/jsonon
+    container_name: jsonon
+    networks:
+      - nginx
+    restart: always
 
 networks:
   nginx:
