@@ -1,8 +1,8 @@
 # config refs ==> https://gitlab.com/gitlab-org/omnibus-gitlab/blob/master/files/gitlab-config-template/gitlab.rb.template
-version: '3'
+version: '3.5'
 services:
   gitlab:
-    image: 'gitlab/gitlab-ce:10.4.3-ce.0'
+    image: 'gitlab/gitlab-ce:10.8.0-ce.0'
     container_name: gitlab
     restart: always
     hostname: 'gitlab.mritd.me'
