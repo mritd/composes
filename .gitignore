@@ -10,6 +10,7 @@ eolinker/mysql/data
 nginx/ssl
 nginx/conf.d
 nginx/log
+nginx/vippasswd
 tor/torrc
 coredns/core.hosts
 mysql/data

@@ -1,0 +1,44 @@
+{
+    "AdminListen": "127.0.0.1:5100",
+    "DialTimeout": 15,
+    "UDPReadTimeout": 30,
+    "Log": ["/dev/stdout"],
+    //cipher config
+    "Cipher":{
+        "Key":"wfFHwjbCHRcFxjpWvP8bUcttPVFDQfXA",
+        //AllowedUser
+        "User": "mritd"
+    },
+    "RateLimit":{
+        "*": "-1",
+        "gsnova_limit":"500K"
+    },
+    "Mux":{
+        "MaxStreamWindow": "512K",
+        "StreamMinRefresh":"32K",
+        "StreamIdleTimeout":10,
+        "SessionIdleTimeout":300
+    },
+    "Server":[
+        {
+            "Listen":"tcp://:113"
+        },
+        {
+            "Listen":"quic://:113"
+        },
+        {
+            "Listen":"http://:118"
+        },
+        {
+            "Listen":"kcp://:111",
+            "KCParams":{
+                "Mode":"fast2"
+            }
+        },
+        {
+            "Listen":"tls://:111",
+//            "Key": "/etc/nginx/ssl/mritd.me.key",
+//            "Cert":"/etc/nginx/ssl/mritd.me.cer"
+        }
+    ]
+}

@@ -1,0 +1,10 @@
+version: '3'
+services:
+  gsnova:
+    image: mritd/gsnova
+    container_name: gsnova
+    restart: always
+    network_mode: host
+    volumes:
+      - "./server.json:/etc/gsnova/server.json"
+    command: ["gsnova","-server","-conf","/etc/gsnova/server.json"]

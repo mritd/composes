@@ -1,0 +1,63 @@
+version: '3'
+services:
+  jekyll:
+    image: mritd/jekyll
+    container_name: jekyll
+    networks:
+      - nginx
+    restart: always
+  videovip:
+    image: mritd/videovip
+    container_name: vip
+    networks:
+      - nginx
+    restart: always
+  idea:
+    image: mritd/idea
+    networks:
+      - nginx
+    container_name: idea
+    restart: always
+  yum:
+    image: mritd/yum
+    container_name: yum
+    networks:
+      - nginx
+    restart: always  
+  radicale:
+    image: mritd/radicale:2.1.5
+    container_name: 2do
+    networks:
+      - nginx
+    restart: always
+    volumes:
+      - /data/radicale:/data/radicale
+  idgen:
+    image: mritd/idgen:v0.0.3
+    container_name: idgen
+    networks:
+      - nginx
+    restart: always
+  shells:
+    image: mritd/shells
+    container_name: shells
+    networks:
+      - nginx
+    restart: always
+  crxdl:
+    image: mritd/crxdl:v1.0.0
+    container_name: crxdl
+    networks:
+      - nginx
+    restart: always
+  jsonon:
+    image: mritd/jsonon
+    container_name: jsonon
+    networks:
+      - nginx
+    restart: always
+
+networks:
+  nginx:
+    external:
+      name: nginx
