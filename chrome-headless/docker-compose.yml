@@ -1,0 +1,9 @@
+version: '3.5'
+services:
+  chrome-headless:
+    image: mritd/chrome-headless
+    container_name: chrome-headless
+    restart: always
+    ports:
+      - "9222:9222"
+    command: --proxy-server=socks5://192.168.1.20:153
