@@ -1,0 +1,12 @@
+version: '3.5'
+services:
+  mtproxy:
+    image: alexdoesh/mtproxy
+    container_name: mtproxy
+    restart: always
+    volumes:
+      - data:/data
+    ports:
+      - "118:443"
+volumes:
+  data:
