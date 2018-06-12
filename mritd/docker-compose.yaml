@@ -56,6 +56,16 @@ services:
     networks:
       - nginx
     restart: always
+  mtproxyweb:
+    image: mritd/mtproxyweb
+    container_name: mtproxyweb
+    networks:
+      - nginx
+    restart: always
+    environment:
+      - MT_ADDRESS
+      - MT_PORT
+      - MT_SECRET
 
 networks:
   nginx:
