@@ -1,30 +1,25 @@
-version: '2'
+version: '3.5'
 services:
-  nginx:
-    image: nginx:1.11.7-alpine
-    restart: always
-    volumes:
-      - ./etc/nginx/ssl:/etc/nginx/ssl
-      - ./etc/nginx/conf.d:/etc/nginx/conf.d
-      - ./log:/var/log/nginx/
-    links:
-      - mattermost 
-    ports:
-      - "80:80"
-      - "443:443"
   mattermost:
-    image: mritd/mattermost:4.2.0
+    image: mritd/mattermost:5.0.0
     restart: always
+    container_name: mattermost
     volumes:
-      - ./etc/mattermost/config.json:/usr/local/mattermost/config/config.json
-      - ./data/mattermost:/data/mattermost
+      - data:/data
+      - ./config.json:/mattermost/config/config.json
     links:
       - mysql
+    ports:
+      - 8065:8065
   mysql:
     image: mysql:5.7.17
     restart: always
+    container_name: mysql
     volumes:
-      - ./data/mysql:/var/lib/mysql
-      - ./init/init.sql:/docker-entrypoint-initdb.d/init.sql
+      - mysql:/var/lib/mysql
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
     environment:
       - MYSQL_ROOT_PASSWORD
+volumes:
+  data:
+  mysql:
