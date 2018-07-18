@@ -1,0 +1,13 @@
+version: '3.5'
+services:
+  twemproxy:
+    image: mritd/twemproxy:v0.4.1
+    container_name: twemproxy
+    restart: always
+    volumes:
+      - ./config.yml:/etc/twemproxy/config.yml
+    ports:
+      - "11211:11211"
+	# use kubernetes cluster dns
+    dns:
+      - 10.254.0.2

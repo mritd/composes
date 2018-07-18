@@ -1,0 +1,14 @@
+test:
+  listen: 0.0.0.0:11211
+  hash: fnv1a_64
+  distribution: ketama
+  timeout: 400
+  backlog: 1024
+  preconnect: true
+  auto_eject_hosts: true
+  server_retry_timeout: 2000
+  server_failure_limit: 3
+  servers:
+   - test-memcached-0.test-memcached.default.svc.cluster.local:11211:1
+   - test-memcached-1.test-memcached.default.svc.cluster.local:11211:1
+   - test-memcached-2.test-memcached.default.svc.cluster.local:11211:1
