@@ -1,0 +1,11 @@
+version: '3.5'
+services:
+  shadowsocks:
+    image: mritd/shadowsocks2
+    container_name: shadowsocks2
+    restart: always
+    ports:
+      - "26:26"
+    environment:
+      - SS_CONFIG
+    command: -s "${SS_CONFIG}" -verbose
