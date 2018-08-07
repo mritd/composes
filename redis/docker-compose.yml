@@ -1,9 +1,0 @@
-version: '2'
-services:
-  redis:
-    image: redis:3.2.11-alpine
-    restart: always
-    volumes: 
-      - ./data:/data
-    ports:
-      - "6379:6379"
