@@ -6,12 +6,6 @@ services:
     networks:
       - nginx
     restart: always
-  videovip:
-    image: mritd/videovip
-    container_name: vip
-    networks:
-      - nginx
-    restart: always
   idea:
     image: mritd/idea
     networks:
