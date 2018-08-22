@@ -1,7 +1,7 @@
 version: '3.5'
 services:
   nginx:
-    image: nginx:1.13.12-alpine
+    image: nginx:1.14.0-alpine
     container_name: nginx
     restart: always
     networks:
@@ -10,7 +10,6 @@ services:
       - ./ssl:/etc/nginx/ssl
       - ./conf.d:/etc/nginx/conf.d
       - ./log:/var/log/nginx/
-      - ./vippasswd:/etc/nginx/conf/vippasswd
     ports:
       - "80:80"
       - "443:443"
