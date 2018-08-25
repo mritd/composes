@@ -1,0 +1,12 @@
+version: '3.5'
+services:
+  vipvideo:
+    image: mritd/vipvideo
+    container_name: vipvideo
+    restart: always
+    networks:
+      - nginx
+networks:
+  nginx:
+    external:
+      name: nginx
