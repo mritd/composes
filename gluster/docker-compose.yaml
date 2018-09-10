@@ -1,0 +1,18 @@
+version: '3.5'
+services:
+  gluster:
+    image: gluster/gluster-centos:gluster3u12_centos7
+    container_name: gluster
+    restart: always
+    network_mode: host
+    privileged: true
+    volumes:
+      - ./glusterfs:/etc/glusterfs
+      - ./log:/var/log/glusterfs
+      - /sys/fs/cgroup:/sys/fs/cgroup:ro
+      - /dev/:/dev
+      - metadata:/var/lib/glusterd
+      - data:/data
+volumes:
+  metadata:
+  data:
