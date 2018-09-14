@@ -1,9 +1,21 @@
 version: '3.5'
-services: 
+services:
   elasticsearch:
-    container_name: es
-    image: mritd/elasticsearch:6.2.1
+    container_name: elasticsearch
+    image: docker.elastic.co/elasticsearch/elasticsearch:6.4.0
     restart: always
     network_mode: "host"
     volumes:
-      - ./config:/usr/local/elasticsearch/config
+      - data:/data/elasticsearch
+    environment:
+      - http.host=192.168.1.11
+      - http.port=8200
+      - transport.tcp.port=192.168.1.11
+      - transport.tcp.port=8300
+      - cluster.name=es
+      - node.name=es
+      - discovery.zen.minimum_master_nodes=1
+      - xpack.security.enabled=false
+      - xpack.monitoring.enabled=false
+volumes:
+  data:
