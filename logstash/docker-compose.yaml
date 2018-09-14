@@ -1,7 +1,7 @@
-version: '2'
+version: '3.5'
 services:
   logstash:
-    image: mritd/logstash:5.6.3
+    image: docker.elastic.co/logstash/logstash:6.4.0
     container_name: logstash
     restart: always
     ports:
@@ -9,5 +9,7 @@ services:
       - "9600:9600"
     volumes:
       - ./config:/usr/local/logstash/config
-      - ./data:/data
+      - data:/data
     command: -f /usr/local/logstash/config/logstash.conf
+volumes:
+  data:
