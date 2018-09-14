@@ -3,8 +3,8 @@
 # Xms represents the initial size of total heap space
 # Xmx represents the maximum size of total heap space
 
--Xms8g
--Xmx8g
+-Xms16g
+-Xmx16g
 
 ################################################################
 ## Expert settings
@@ -21,11 +21,6 @@
 -XX:+UseConcMarkSweepGC
 -XX:CMSInitiatingOccupancyFraction=75
 -XX:+UseCMSInitiatingOccupancyOnly
-
-## optimizations
-
-# disable calls to System#gc
--XX:+DisableExplicitGC
 
 ## Locale
 # Set the locale language
@@ -52,7 +47,9 @@
 #-Djna.nosys=true
 
 # Turn on JRuby invokedynamic
-# -Djruby.compile.invokedynamic=true
+-Djruby.compile.invokedynamic=true
+# Force Compilation
+-Djruby.jit.threshold=0
 
 ## heap dumps
 
@@ -65,7 +62,7 @@
 #-XX:HeapDumpPath=${LOGSTASH_HOME}/heapdump.hprof
 
 ## GC logging
--XX:+PrintGCDetails
+#-XX:+PrintGCDetails
 #-XX:+PrintGCTimeStamps
 #-XX:+PrintGCDateStamps
 #-XX:+PrintClassHistogram

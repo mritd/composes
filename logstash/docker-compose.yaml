@@ -8,8 +8,9 @@ services:
       - "5044:5044"
       - "9600:9600"
     volumes:
-      - ./config:/usr/local/logstash/config
+      - ./config:/usr/share/logstash/config
+      - ./pipeline:/usr/share/logstash/pipeline
       - data:/data
-    command: -f /usr/local/logstash/config/logstash.conf
+    command: logstash 
 volumes:
   data:
