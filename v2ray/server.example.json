@@ -1,0 +1,136 @@
+{
+    "log": {
+        "loglevel": "warning"
+    },
+    "inbound": {
+        "port": 160,
+        "protocol": "vmess",
+        "settings": {
+            "clients": [
+                {
+                    "id": "02fd2ee8-8cec-4bb0-823e-a1bfb8deecff",
+                    "level": 1,
+                    "alterId": 16,
+                    "email": "mritd1234@gmail.com"
+                }
+            ],
+            "default": {
+                "level": 0,
+                "alterId": 16
+            },
+            "disableInsecureEncryption": true
+        },
+        "streamSettings": {
+            "network": "kcp",
+            "security": "none",
+            "sockopt": {
+                "mark": 0,
+                "tcpFastOpen": true,
+                "tproxy": "off"
+            }
+        },
+        "detour": {
+            "to": "vmess-detour"
+        },
+        "sniffing": {
+            "enabled":true,
+            "destOverride": ["http", "tls"]
+        }
+    },
+    "outbound": {
+        "sendThrough": "0.0.0.0",
+        "protocol": "freedom",
+        "settings": {}
+    },
+    "inboundDetour": [
+        {
+            "protocol": "vmess",
+            "port": "201-220",
+            "tag": "vmess-detour",
+            "listen": "0.0.0.0",
+            "settings": {
+                "clients": [
+                    {
+                        "id": "02fd2ee8-8cec-4bb0-823e-a1bfb8deecff",
+                        "level": 1,
+                        "alterId": 16,
+                        "email": "mritd1234@gmail.com"
+                    }
+                ],
+                "default": {
+                    "level": 0,
+                    "alterId": 16
+                },
+                "disableInsecureEncryption": true
+            },
+            "allocate": {
+                "strategy": "random",
+                "concurrency": 5,
+                "refresh": 60
+            },
+            "sniffing": {
+              "enabled": true,
+              "destOverride": ["http", "tls"]
+            },
+            "streamSettings": {
+                "network": "kcp",
+                "security": "none",
+                "sockopt": {
+                    "mark": 0,
+                    "tcpFastOpen": true,
+                    "tproxy": "off"
+                }
+            }
+        }
+    ],
+    "outboundDetour": [
+        {
+            "protocol": "blackhole",
+            "settings": {},
+            "tag": "blocked"
+        }
+    ],
+    "routing": {
+        "strategy": "rules",
+        "settings": {
+            "rules": [
+                {
+                    "type": "field",
+                    "ip": [
+                        "0.0.0.0/8",
+                        "10.0.0.0/8",
+                        "100.64.0.0/10",
+                        "127.0.0.0/8",
+                        "169.254.0.0/16",
+                        "172.16.0.0/12",
+                        "192.0.0.0/24",
+                        "192.0.2.0/24",
+                        "192.168.0.0/16",
+                        "198.18.0.0/15",
+                        "198.51.100.0/24",
+                        "203.0.113.0/24",
+                        "::1/128",
+                        "fc00::/7",
+                        "fe80::/10"
+                    ],
+                    "outboundTag": "blocked"
+                }
+            ]
+        }
+    },
+    "transport": {
+        "kcpSettings": {
+            "mtu": 1350,
+            "tti": 30,
+            "uplinkCapacity": 50,
+            "downlinkCapacity": 10,
+            "congestion": false,
+            "readBufferSize": 2,
+            "writeBufferSize": 2,
+            "header": {
+              "type": "dtls"
+            }
+        }
+    }
+    
+}

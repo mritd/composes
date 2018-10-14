@@ -16,3 +16,5 @@ coredns/core.hosts
 mysql/data
 taiga/conf/nginx/ssl
 taiga/conf/nginx/log
+v2ray/client.json
+v2ray/server.json
