@@ -50,6 +50,12 @@ services:
     networks:
       - nginx
     restart: always
+  myip:
+    image: mritd/myip:v1.0.0
+    container_name: myip
+    networks:
+      - nginx
+    restart: always
   mtproxyweb:
     image: mritd/mtproxyweb
     container_name: mtproxyweb
