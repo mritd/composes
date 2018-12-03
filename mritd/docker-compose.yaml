@@ -54,6 +54,12 @@ services:
       - MT_ADDRESS
       - MT_PORT
       - MT_SECRET
+  wechat-markdowner:
+    image: mritd/wechat-markdowner
+    container_name: wechat-markdowner
+    networks:
+      - nginx
+    restart: always
 
 networks:
   nginx:
