@@ -1,12 +1,11 @@
 version: '3.6'
 services:
   mtproxy:
-    image: alexdoesh/mtproxy
+    image: nineseconds/mtg:stable
     container_name: mtproxy
     restart: always
-    volumes:
-      - data:/data
     ports:
-      - "118:443"
-volumes:
-  data:
+      - "118:3129"
+    environment:
+      - MT_SECRET
+    command: ${MT_SECRET}
