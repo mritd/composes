@@ -1,0 +1,20 @@
+version: '3.6'
+services:
+  athens:
+    image: gomods/athens:v0.2.0
+    container_name: athens
+    restart: always
+    environment:
+      - ATHENS_STORAGE_TYPE=disk
+      - ATHENS_DISK_STORAGE_ROOT=/var/lib/athens
+      - SESSION_SECRET
+    volumes:
+      - data:/var/lib/athens
+    networks:
+      - nginx
+volumes:
+  data:
+networks:
+  nginx:
+    external:
+      name: nginx 
