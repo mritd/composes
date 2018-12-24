@@ -1,3 +1,4 @@
+# export MT_SECRET=`echo dd$(openssl rand -hex 16)`
 version: '3.6'
 services:
   mtproxy:
@@ -5,7 +6,7 @@ services:
     container_name: mtproxy
     restart: always
     ports:
-      - "118:3129"
+      - "118:3128"
     environment:
       - MT_SECRET
     command: ${MT_SECRET}
