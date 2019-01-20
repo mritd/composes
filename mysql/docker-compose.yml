@@ -5,8 +5,10 @@ services:
     container_name: mysql
     restart: always
     volumes:
-      - ./data:/var/lib/mysql
+      - data:/var/lib/mysql
     ports:
       - "3306:3306"
     environment:
       - MYSQL_ROOT_PASSWORD
+volumes:
+  data:
