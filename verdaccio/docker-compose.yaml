@@ -1,9 +1,10 @@
-version: '3.5'
+version: '3.7'
 services:
   verdaccio:
-    image: mritd/verdaccio:2.7.4
+    image: mritd/verdaccio:v3.10.2
     container_name: verdaccio
     restart: always
+    init: true
     volumes: 
       - data:/verdaccio
     ports:
