@@ -1,7 +1,7 @@
 version: '3.5'
 services:
   mysql:
-    image: mysql:5.7.23
+    image: mysql:5.7.25
     container_name: mysql
     restart: always
     volumes:
