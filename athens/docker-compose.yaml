@@ -1,12 +1,12 @@
 version: '3.6'
 services:
   athens:
-    image: gomods/athens:v0.2.0
+    image: gomods/athens:v0.3.0
     container_name: athens
     restart: always
     environment:
-      - ATHENS_STORAGE_TYPE=disk
-      - ATHENS_DISK_STORAGE_ROOT=/var/lib/athens
+      - ATHENS_STORAGE_TYPE
+      - ATHENS_DISK_STORAGE_ROOT
       - SESSION_SECRET
     volumes:
       - data:/var/lib/athens
