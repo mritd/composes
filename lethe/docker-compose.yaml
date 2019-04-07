@@ -7,6 +7,6 @@ services:
     ports:
       - "111:111"
       - "111:111/udp"
+      - "8123:8123"
     volumes:
       - "./lethe.yaml:/lethe.yaml"
-    command: ["lethe","server"] 
