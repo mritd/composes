@@ -1,0 +1,9 @@
+debug: true
+server:
+  tcp_listen_address: 0.0.0.0:111
+  udp_listen_address: 0.0.0.0:111
+  websocket:
+    enable: true
+    url: /imagePush
+  encrypt_method: CHACHA20-IETF-POLY1305
+  password: pWziNauGogWAiagKUrMhVcZ2kgWaKUL8

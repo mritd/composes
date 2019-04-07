@@ -1,0 +1,12 @@
+version: '3.6'
+services:
+  lethe:
+    image: mritd/lethe:v1.0.0
+    container_name: lethe
+    restart: always
+    ports:
+      - "111:111"
+      - "111:111/udp"
+    volumes:
+      - "./lethe.yaml:/lethe.yaml"
+    command: ["lethe","server"] 
