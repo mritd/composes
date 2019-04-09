@@ -14,12 +14,6 @@ services:
     restart: always
     volumes:
       - /data/radicale:/data/radicale
-  idea:
-    image: mritd/idea
-    networks:
-      - nginx
-    container_name: idea
-    restart: always
   idgen:
     image: mritd/idgen:v0.0.3
     container_name: idgen
@@ -44,16 +38,6 @@ services:
     networks:
       - nginx
     restart: always
-  mtproxyweb:
-    image: mritd/mtproxyweb
-    container_name: mtproxyweb
-    networks:
-      - nginx
-    restart: always
-    environment:
-      - MT_ADDRESS
-      - MT_PORT
-      - MT_SECRET
   wechat-markdowner:
     image: mritd/wechat-markdowner
     container_name: wechat-markdowner
