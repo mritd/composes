@@ -4,6 +4,7 @@ services:
     image: mritd/lethe:v1.0.1
     container_name: lethe
     restart: always
+    tty: true
     ports:
       - "111:111"
       - "111:111/udp"
