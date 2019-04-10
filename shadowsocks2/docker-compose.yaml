@@ -10,6 +10,7 @@ services:
     restart: always
     ports:
       - "26:26"
+      - "26:26/udp"
       - "8053:8053"
       - "8053:8053/udp"
       - "8054:8054"
