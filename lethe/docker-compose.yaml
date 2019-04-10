@@ -1,7 +1,7 @@
 version: '3.6'
 services:
   lethe:
-    image: mritd/lethe:v1.0.1
+    image: mritd/lethe:v1.0.2
     container_name: lethe
     restart: always
     tty: true
