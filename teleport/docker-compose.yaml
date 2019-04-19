@@ -1,0 +1,18 @@
+version: '3.6'
+services:
+  teleport:
+    image: mritd/teleport:v3.2.2
+    container_name: teleport
+    restart: always
+    ports:
+      - "3022-3026:3022-3026"
+      - "3080:3080"
+    volumes:
+      - ./teleport.yaml:/etc/teleport/teleport.yaml
+      - ./ssl:/etc/teleport/ssl
+      - data:/var/lib/teleport
+    extra_hosts:
+      - "tun.example.com:1.2.3.4"
+    command: ["teleport","start","-c","/etc/teleport/teleport.yaml"]
+volumes:
+ data:
