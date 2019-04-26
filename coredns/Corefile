@@ -1,14 +1,18 @@
-.:53 {
+. {
     bind 0.0.0.0
-    cache 300
-    hosts /etc/coredns/core.hosts {
-    	fallthrough
-	}
-    proxy . 114.114.114.114:53 {
-        protocol dns
-       	fail_timeout 2s
-	    max_fails 3
+    cache 30 . {
+        success 4096
+    }
+    hosts /etc/coredns/hosts {
+        reload 1m
+        fallthrough
+        }
+    forward . 8.8.8.8:53 114.114.114.114:53 {
+        max_fails 2
+        expire 20s
+        policy random
+        health_check 0.2s
     }
     errors
-    log . "{remote} - [{when}] {>id} {type} {class} {name} {proto} {size} {>do} {>bufsize} {rcode} {>rflags} {rsize} {duration}"
+    log . "{remote}:{port} - {>id} \"{type} {class} {name} {proto} {size} {>do} {>bufsize}\" {rcode} {>rflags} {rsize} {duration}"
 }
