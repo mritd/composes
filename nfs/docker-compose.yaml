@@ -1,0 +1,28 @@
+# chown 65534:65533 /data/nfs
+# apt-get install apparmor-utils
+# apparmor_parser -r -W apparmor.conf
+# refs => https://github.com/ehough/docker-nfs-server/blob/develop/doc/feature/apparmor.md
+version: '3.6'
+services:
+  nfs:
+    image: erichough/nfs-server:2.2.1
+    container_name: nfs_server
+    restart: always
+    volumes:
+      - ./exports:/etc/exports
+      - /lib/modules:/lib/modules:ro
+      - /data/nfs:/data
+    cap_add:
+      - SYS_ADMIN
+      - SYS_MODULE
+    security_opt:
+      - apparmor=erichough-nfs
+    ports:
+      - "2049:2049"
+      - "2049:2049/udp"
+      - "111:111"
+      - "111:111/udp"
+      - "32765:32765"
+      - "32765:32765/udp"
+      - "32767:32767"
+      - "32767:32767/udp"
