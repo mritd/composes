@@ -1,4 +1,4 @@
-version: '3'
+version: '3.6'
 services:
   jekyll:
     image: mritd/jekyll
@@ -7,7 +7,7 @@ services:
       - nginx
     restart: always
   radicale:
-    image: mritd/radicale:2.1.11
+    image: mritd/radicale:v2.1.11
     container_name: 2do
     networks:
       - nginx
@@ -15,7 +15,7 @@ services:
     volumes:
       - /data/radicale:/data/radicale
   idgen:
-    image: mritd/idgen:v0.0.3
+    image: mritd/idgen:v1.0.0
     container_name: idgen
     networks:
       - nginx
@@ -35,12 +35,6 @@ services:
   myip:
     image: mritd/myip:v1.0.0
     container_name: myip
-    networks:
-      - nginx
-    restart: always
-  wechat-markdowner:
-    image: mritd/wechat-markdowner
-    container_name: wechat-markdowner
     networks:
       - nginx
     restart: always
