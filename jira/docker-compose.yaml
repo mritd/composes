@@ -1,0 +1,19 @@
+version: '3.7'
+services:
+  jira:
+    image: mritd/atlassian-jira:8.2.2
+    container_name: jira
+    volumes:
+      - data:/var/atlassian/application-data/jira
+    environment:
+      - JVM_MINIMUM_MEMORY
+      - JVM_MAXIMUM_MEMORY
+      - CATALINA_CONNECTOR_PROXYNAME
+      - CATALINA_CONNECTOR_PROXYPORT
+      - CATALINA_CONNECTOR_SCHEME
+      - CATALINA_CONNECTOR_SECURE
+    ports:
+      - 8092:8080
+
+volumes:
+  data:
