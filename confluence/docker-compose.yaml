@@ -1,0 +1,22 @@
+services:
+  confluence:
+    image: mritd/atlassian-confluence:6.15.6
+    container_name: confluence
+    volumes:
+      - conf:/opt/atlassian/confluence/conf
+      - data:/var/atlassian/application-data/confluence
+    environment:
+      - JNDI_EMAIL
+      - JVM_MINIMUM_MEMORY
+      - JVM_MAXIMUM_MEMORY
+      - CATALINA_CONNECTOR_PROXYNAME
+      - CATALINA_CONNECTOR_PROXYPORT
+      - CATALINA_CONNECTOR_SCHEME
+      - CATALINA_CONNECTOR_SECURE
+    ports:
+      - 8090:8090
+      - 8091:8091
+
+volumes:
+  data:
+  conf:
