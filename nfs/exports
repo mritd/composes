@@ -1,1 +1,1 @@
-/data               *(rw,async,no_all_squash,no_subtree_check)
+/data               *(rw,sync,no_subtree_check,all_squash,anonuid=65534,anongid=65534)
