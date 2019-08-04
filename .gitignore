@@ -15,3 +15,4 @@ taiga/conf/nginx/log
 v2ray/client.json
 v2ray/server.json
 lethe/config
+numb/numb.yaml
