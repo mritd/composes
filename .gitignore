@@ -1,4 +1,5 @@
 */.env
+mysql/init.sql
 rabbitmq/data
 lightsocks/lightsocks.json
 privoxy/config
