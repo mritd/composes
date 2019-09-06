@@ -1,11 +1,12 @@
-version: '3.5'
+version: '3.7'
 services:
   mysql:
-    image: mysql:5.7.25
+    image: mysql:5.7.27
     container_name: mysql
     restart: always
     volumes:
       - data:/var/lib/mysql
+      - init.sql:/docker-entrypoint-initdb.d/init.sql
     ports:
       - "3306:3306"
     environment:
