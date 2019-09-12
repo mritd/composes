@@ -6,35 +6,15 @@ services:
     networks:
       - nginx
     restart: always
-  radicale:
-    image: mritd/radicale:v2.1.11
-    container_name: 2do
-    networks:
-      - nginx
-    restart: always
-    volumes:
-      - /data/radicale:/data/radicale
   idgen:
     image: mritd/idgen:v1.0.0
     container_name: idgen
     networks:
       - nginx
     restart: always
-  crxdl:
-    image: mritd/crxdl:v1.0.0
-    container_name: crxdl
-    networks:
-      - nginx
-    restart: always
   jsonon:
     image: mritd/jsonon
     container_name: jsonon
-    networks:
-      - nginx
-    restart: always
-  myip:
-    image: mritd/myip:v1.0.0
-    container_name: myip
     networks:
       - nginx
     restart: always
