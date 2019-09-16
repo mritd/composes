@@ -1,7 +1,7 @@
 version: '3'
 services:
   tcp_proxy:
-    image: nginx:1.13.12-alpine
+    image: nginx:1.17.3-alpine
     container_name: tcp_proxy
     restart: always
     volumes:
