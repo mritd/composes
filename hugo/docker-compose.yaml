@@ -1,0 +1,13 @@
+version: '3.7'
+services:
+  jekyll:
+    image: mritd/hugo
+    container_name: hugo
+    networks:
+      - nginx
+    restart: always
+
+networks:
+  nginx:
+    external:
+      name: nginx
