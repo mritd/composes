@@ -1,0 +1,13 @@
+version: '3.7'
+services:
+  demo:
+    image: mritd/demo
+    container_name: demo
+    restart: always
+    networks:
+      - nginx
+
+networks:
+  nginx:
+    external:
+      name: nginx
