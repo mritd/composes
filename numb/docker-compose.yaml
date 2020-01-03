@@ -1,14 +1,13 @@
 version: '3.7'
 services:
-  lethe:
-    image: mritd/numb:v1.0.0
+  numb:
+    image: mritd/numb:v1.0.2
     container_name: numb
     restart: always
     networks:
       - nginx
     volumes:
       - "./numb.yaml:/numb.yaml"
-    command: ["server"] 
 
 networks:
   nginx:
