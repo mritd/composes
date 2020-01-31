@@ -1,0 +1,8 @@
+version: '3.7'
+services:
+  kms:
+    image: mritd/kms
+    container_name: kms
+    restart: always
+    ports:
+      - "1688:1688"
