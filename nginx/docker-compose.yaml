@@ -7,8 +7,10 @@ services:
     networks:
       - nginx
     volumes:
-      - ./ssl:/etc/nginx/ssl
+      - ./nginx.conf:/etc/nginx/nginx.conf
       - ./conf.d:/etc/nginx/conf.d
+      - ./nginxconfig.io:/etc/nginx/nginxconfig.io
+      - ./ssl:/etc/nginx/ssl
       - ./log:/var/log/nginx/
     ports:
       - "80:80"
