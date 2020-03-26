@@ -1,0 +1,13 @@
+version: '3.7'
+services:
+  pmm:
+    image: percona/pmm-server:2.3.0
+    container_name: pmm
+    restart: always
+    volumes:
+      - data:/srv
+    ports:
+      - "80:80"
+      - "443:443"
+volumes:
+  data:

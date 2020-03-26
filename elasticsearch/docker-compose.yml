@@ -1,21 +1,22 @@
-version: '3.5'
+version: '3.7'
 services:
   elasticsearch:
     container_name: elasticsearch
-    image: docker.elastic.co/elasticsearch/elasticsearch:6.4.0
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.5.2
     restart: always
     network_mode: "host"
     volumes:
       - data:/data/elasticsearch
     environment:
-      - http.host=192.168.1.11
-      - http.port=8200
-      - transport.tcp.port=192.168.1.11
-      - transport.tcp.port=8300
+      - http.host=172.16.10.59
+      - http.port=9200
+      - transport.tcp.port=172.16.10.59
+      - transport.tcp.port=9300
       - cluster.name=es
       - node.name=es
-      - discovery.zen.minimum_master_nodes=1
+      - discovery.type=single-node
       - xpack.security.enabled=false
       - xpack.monitoring.enabled=false
+      - "ES_JAVA_OPTS=-Xms4096m -Xmx7168m"
 volumes:
   data:

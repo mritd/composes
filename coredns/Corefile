@@ -6,7 +6,7 @@
     hosts /etc/coredns/hosts {
         reload 1m
         fallthrough
-        }
+    }
     forward . 8.8.8.8:53 114.114.114.114:53 {
         max_fails 2
         expire 20s
