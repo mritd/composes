@@ -11,4 +11,4 @@ services:
     ports:
       - 14000:14000  # HTTPS ACME API
       - 15000:15000  # HTTPS Management API
-    command: ["pebble","-strict","-config","/test/config/pebble-config.json","-dnsserver","dns22.hichina.com:53"]
+    command: ["pebble","-strict","-config","/test/config/pebble-config.json","-dnsserver","114.114.114.114:53"]
