@@ -1,8 +1,9 @@
+# elasticsearch-setup-passwords interactive
 version: '3.7'
 services:
   elasticsearch:
     container_name: elasticsearch
-    image: docker.elastic.co/elasticsearch/elasticsearch:7.5.2
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.6.2
     restart: always
     network_mode: "host"
     volumes:
@@ -15,8 +16,8 @@ services:
       - cluster.name=es
       - node.name=es
       - discovery.type=single-node
-      - xpack.security.enabled=false
-      - xpack.monitoring.enabled=false
+      - xpack.security.enabled=true
+      - xpack.monitoring.enabled=true
       - "ES_JAVA_OPTS=-Xms4096m -Xmx7168m"
 volumes:
   data:
