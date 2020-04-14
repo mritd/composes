@@ -1,3 +1,4 @@
+# kibana.yaml: https://raw.githubusercontent.com/elastic/kibana/master/config/kibana.yml
 version: '3.7'
 services:
   kibana:
