@@ -1,7 +1,7 @@
 version: '3.7'
 services:
   mysql:
-    image: mysql:5.7.29
+    image: mysql:5.7.30
     container_name: mysql
     restart: always
     volumes:
@@ -11,5 +11,6 @@ services:
       - "3306:3306"
     environment:
       - MYSQL_ROOT_PASSWORD
+    command: ["--character-set-server=utf8mb4","--collation-server=utf8mb4_unicode_ci"]
 volumes:
   data:
