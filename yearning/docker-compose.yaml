@@ -3,9 +3,8 @@ services:
   yearning:
     image: mritd/yearning
     container_name: yearning
-    restart: always
+    restart: on-failure
     ports:
       - "8000:8000"
     volumes:
       - "./conf.toml:/opt/yearning/conf.toml"
-    command: ["-s"]
