@@ -1,0 +1,11 @@
+version: '3.7'
+services:
+  yearning:
+    image: mritd/yearning
+    container_name: yearning
+    restart: always
+    ports:
+      - "8000:8000"
+    volumes:
+      - "./conf.toml:/opt/yearning/conf.toml"
+    command: ["-s"]
