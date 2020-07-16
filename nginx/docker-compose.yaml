@@ -11,6 +11,7 @@ services:
       - ./conf.d:/etc/nginx/conf.d
       - ./nginxconfig.io:/etc/nginx/nginxconfig.io
       - ./ssl:/etc/nginx/ssl
+      - ./data:/data
       - ./log:/var/log/nginx/
     ports:
       - "80:80"
