@@ -1,0 +1,24 @@
+version: '3.7'
+services:
+  apt-cacher-ng:
+    image: mritd/acng
+    container_name: acng
+    networks:
+      - nginx
+    environment:
+      - APT_CACHER_NG_USER=root
+    volumes:
+      - ./conf/backends_docker:/etc/apt-cacher-ng/backends_docker
+      - ./conf/backends_kubernetes:/etc/apt-cacher-ng/backends_kubernetes
+      - ./conf/acng.conf:/etc/apt-cacher-ng/acng.conf
+      - ./conf/security.conf:/etc/apt-cacher-ng/security.conf
+      - apt-cacher-ng:/var/cache/apt-cacher-ng
+    restart: always
+
+volumes:
+  apt-cacher-ng:
+
+networks:
+  nginx:
+    external:
+      name: nginx
