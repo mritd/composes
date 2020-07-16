@@ -5,6 +5,7 @@ lightsocks/lightsocks.json
 privoxy/config
 sentry/pgdb
 nginx/ssl
+nginx/data
 nginx/conf.d
 nginx/log
 nginx/vippasswd
