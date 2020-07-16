@@ -1,0 +1,13 @@
+version: '3.7'
+services:
+  idgen:
+    image: mritd/idgen
+    container_name: idgen
+    networks:
+      - nginx
+    restart: always
+
+networks:
+  nginx:
+    external:
+      name: nginx
