@@ -1,0 +1,22 @@
+version: '3.7'
+services:
+  hysteria:
+    image: mritd/hysteria
+    container_name: hysteria
+    restart: always
+    network_mode: "host"
+    volumes:
+      - ./conf:/etc/hysteria
+    command:
+      - proxy
+      - server
+      - -listen
+      - ":3000"
+      - -auth
+      - /etc/hysteria/auth
+      - -cert
+      - /etc/hysteria/ssl/hysteria.cer
+      - -key
+      - /etc/hysteria/ssl/hysteria.key
+      - -obfs
+      - bleem
