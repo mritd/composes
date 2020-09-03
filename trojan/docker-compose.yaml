@@ -1,0 +1,21 @@
+version: '3.7'
+services:
+  trojan:
+    image: trojangfw/trojan
+    container_name: trojan
+    restart: always
+    ports:
+    - "5212:5212"
+    volumes:
+    - ./config:/config
+    command: ["trojan","/config/trojan.json"]
+  cloudreve:
+    image: mritd/cloudreve:fix-sqlite
+    container_name: cloudreve
+    restart: always
+    volumes:
+    - ./config:/config
+    - data:/data
+    command: ["-c","/config/cloudreve.ini"]
+volumes:
+  data:
