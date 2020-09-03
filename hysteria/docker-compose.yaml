@@ -18,5 +18,7 @@ services:
       - /etc/hysteria/ssl/hysteria.cer
       - -key
       - /etc/hysteria/ssl/hysteria.key
+      - -max-conn-client
+      - "30000"
       - -obfs
       - bleem
