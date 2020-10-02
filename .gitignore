@@ -1,14 +1,12 @@
 */.env
 mysql/init.sql
 rabbitmq/data
-lightsocks/lightsocks.json
 privoxy/config
 sentry/pgdb
 nginx/ssl
 nginx/data
-nginx/conf.d
+nginx/vhost
 nginx/log
-nginx/vippasswd
 tor/torrc
 coredns/core.hosts
 mysql/data
@@ -16,7 +14,6 @@ taiga/conf/nginx/ssl
 taiga/conf/nginx/log
 v2ray/client.json
 v2ray/server.json
-lethe/config
 numb/numb.yaml
 acng/conf/security.conf
 hysteria/conf
