@@ -8,10 +8,8 @@ services:
       - nginx
     volumes:
       - ./nginx.conf:/etc/nginx/nginx.conf
-      - ./vhost:/etc/nginx/conf.d/vhost
-      - ./common:/etc/nginx/conf.d/common
+      - ./conf.d:/etc/nginx/conf.d
       - ./ssl:/etc/nginx/ssl
-      - ./data:/data
       - ./log:/var/log/nginx/
     ports:
       - "80:80"

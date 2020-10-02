@@ -4,8 +4,7 @@ rabbitmq/data
 privoxy/config
 sentry/pgdb
 nginx/ssl
-nginx/data
-nginx/vhost
+nginx/conf.d/vhost
 nginx/log
 tor/torrc
 coredns/core.hosts
