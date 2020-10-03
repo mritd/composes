@@ -1,11 +1,11 @@
 version: '3.7'
 services:
-  hugo:
-    image: mritd/hugo
-    container_name: hugo
+  mritd_com:
+    image: mritd/mritd.com
+    container_name: mritd_com
+    restart: always
     networks:
       - nginx
-    restart: always
 
 networks:
   nginx:
