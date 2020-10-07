@@ -5,7 +5,8 @@ services:
     container_name: cloudreve
     restart: always
     ports:
-    - 5212:5212
+    - "5212:5212"
+    - "5443:5443"
     volumes:
     - ./config:/etc/cloudreve
     - data:/data
