@@ -1,12 +1,13 @@
-version: '3.5'
+version: '3.7'
 services:
   redis:
-    image: redis:3.2.12-alpine
+    image: redis:6.0.8-alpine
     container_name: redis
     restart: always
-    volumes: 
+    volumes:
       - data:/data
     ports:
       - "6379:6379"
+    command: ["redis-server","--appendonly","yes"]
 volumes:
   data:
