@@ -1,0 +1,16 @@
+version: "3.8"
+services:
+  nexus:
+    image: sonatype/nexus3:3.28.1
+    container_name: nexus
+    restart: always
+    ports:
+      - "8081:8081"
+    volumes:
+      - "data:/nexus-data"
+      - "/etc/localtime:/etc/localtime:ro"
+    environment:
+      - TZ="Asia/Shanghai"
+      - INSTALL4J_ADD_VM_PARAMS=-Xms2g -Xmx7g
+volumes:
+  data:
