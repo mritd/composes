@@ -1,16 +1,14 @@
-version: '3.5'
+version: '3.8'
 services:
   logstash:
-    image: docker.elastic.co/logstash/logstash:6.4.0
+    image: docker.elastic.co/logstash/logstash:7.9.3
     container_name: logstash
     restart: always
-    ports:
-      - "5044:5044"
-      - "9600:9600"
+    network_mode: "host"
+    environment:
+      TZ: Asia/Shanghai
     volumes:
+      - /etc/timezone:/etc/timezone
+      - /data/logstash:/data
       - ./config:/usr/share/logstash/config
       - ./pipeline:/usr/share/logstash/pipeline
-      - data:/data
-    command: logstash 
-volumes:
-  data:
