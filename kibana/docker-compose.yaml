@@ -1,9 +1,9 @@
 # kibana.yaml: https://raw.githubusercontent.com/elastic/kibana/master/config/kibana.yml
-version: '3.7'
+version: '3.8'
 services:
   kibana:
     container_name: kibana
-    image: docker.elastic.co/kibana/kibana:7.6.2
+    image: docker.elastic.co/kibana/kibana:7.9.2
     restart: always
     ports:
       - 5601:5601
