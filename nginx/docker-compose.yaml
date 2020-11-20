@@ -6,7 +6,10 @@ services:
     restart: always
     networks:
       - nginx
+    environment:
+      TZ: Asia/Shanghai
     volumes:
+      - /etc/timezone:/etc/timezone
       - ./nginx.conf:/etc/nginx/nginx.conf
       - ./conf.d:/etc/nginx/conf.d
       - ./ssl:/etc/nginx/ssl
