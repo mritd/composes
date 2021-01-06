@@ -1,0 +1,26 @@
+version: '3.8'
+services:
+  caddy:
+    image: mritd/caddy
+    container_name: caddy
+    restart: always
+    networks:
+      - caddy
+    environment:
+      TZ: Asia/Shanghai
+      GANDI_API_TOKEN:
+    volumes:
+      - /etc/timezone:/etc/timezone
+      - ./conf:/etc/caddy
+      - config:/config
+      - data:/data
+    ports:
+      - "80:80"
+      - "443:443"
+networks:
+  caddy:
+    external:
+      name: caddy
+volumes:
+  config:
+  data:

@@ -1,0 +1,68 @@
+(LOG) {
+    log {
+        format formatted "[{ts}] {request>remote_addr} {request>proto} {request>method} <- {status} -> {request>host} {request>uri} {request>headers>User-Agent>[0]}"  {
+            time_format "iso8601"
+        }
+        output file "{args.0}" {
+            roll_size 100mb
+            roll_keep 3
+            roll_keep_for 7d
+        }
+    }
+}
+
+(TLS) {
+    protocols tls1.2 tls1.3
+    ciphers TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256 TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256 TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384 TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 TLS_ECDHE_ECDSA_WITH_CHACHA20_POLY1305_SHA256 TLS_ECDHE_RSA_WITH_CHACHA20_POLY1305_SHA256
+}
+
+(HSTS) {
+    # HSTS (63072000 seconds)
+    header / Strict-Transport-Security "max-age=63072000"
+}
+
+(ACME) {
+    dns gandi {$GANDI_API_TOKEN}
+}
+
+www.mritd.com {
+    # 重定向
+	redir https://mritd.com{uri}
+
+    # 压缩支持
+    encode zstd gzip
+
+    # 日志
+    import LOG "/data/logs/mritd.com.log"
+
+    # TLS 配置
+    tls {
+        import TLS
+        import ACME
+    }
+
+    # HSTS
+    import HSTS
+}
+
+mritd.com {
+    # 路由
+    route /* {
+        reverse_proxy mritd_com:80
+    }
+
+    # 压缩支持
+    encode zstd gzip
+
+    # 日志
+    import LOG "/data/logs/mritd.com.log"
+
+    # TLS 配置
+    tls {
+        import TLS
+        import ACME
+    }
+    
+    # HSTS
+    import HSTS
+}
