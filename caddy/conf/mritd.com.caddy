@@ -1,6 +1,6 @@
 www.mritd.com {
     # 重定向
-        redir https://mritd.com{uri}
+    redir https://mritd.com{uri}
 
     # 日志
     import LOG "/data/logs/mritd.com.log"
