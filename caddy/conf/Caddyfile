@@ -21,48 +21,22 @@
     header / Strict-Transport-Security "max-age=63072000"
 }
 
-(ACME) {
+(ACME_GANDI) {
     dns gandi {$GANDI_API_TOKEN}
 }
 
-www.mritd.com {
-    # 重定向
-	redir https://mritd.com{uri}
-
-    # 压缩支持
+(COMMON_CONFIG) {
+	# 压缩支持
     encode zstd gzip
-
-    # 日志
-    import LOG "/data/logs/mritd.com.log"
 
     # TLS 配置
     tls {
         import TLS
-        import ACME
+        import ACME_GANDI
     }
 
     # HSTS
     import HSTS
 }
 
-mritd.com {
-    # 路由
-    route /* {
-        reverse_proxy mritd_com:80
-    }
-
-    # 压缩支持
-    encode zstd gzip
-
-    # 日志
-    import LOG "/data/logs/mritd.com.log"
-
-    # TLS 配置
-    tls {
-        import TLS
-        import ACME
-    }
-    
-    # HSTS
-    import HSTS
-}
+import /etc/caddy/*.caddy

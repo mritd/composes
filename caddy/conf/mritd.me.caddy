@@ -1,0 +1,19 @@
+www.mritd.me {
+    # 重定向
+    redir https://mritd.com{uri} permanent
+
+    # 日志
+    import LOG "/data/logs/mritd.com.log"
+
+    import COMMON_CONFIG
+}
+
+mritd.me {
+    # 重定向
+    redir https://mritd.com{uri} permanent
+
+    # 日志
+    import LOG "/data/logs/mritd.com.log"
+
+    import COMMON_CONFIG
+}
