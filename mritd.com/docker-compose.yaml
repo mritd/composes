@@ -5,9 +5,9 @@ services:
     container_name: mritd_com
     restart: always
     networks:
-      - nginx
+      - caddy
 
 networks:
-  nginx:
+  caddy:
     external:
-      name: nginx
+      name: caddy
