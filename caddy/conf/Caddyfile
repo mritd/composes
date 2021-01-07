@@ -37,6 +37,9 @@
 
     # HSTS
     import HSTS
+
+    # log
+    import LOG "{args.0}"
 }
 
 # 开启 HTTP3 实验性支持
