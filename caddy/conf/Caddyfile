@@ -30,6 +30,11 @@
     header / Strict-Transport-Security "max-age=63072000"
 }
 
+(SECURITY) {
+    # hidden server name
+    header -Server
+}
+
 (ACME_CLOUDFLARE) {
     dns cloudflare {$CLOUDFLARE_API_TOKEN}
 }
@@ -58,6 +63,9 @@
 
     # HSTS
     import HSTS
+
+    # security config
+    import SECURITY
 
     # log
     import LOG_COMMON "{args.0}"
