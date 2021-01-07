@@ -1,4 +1,4 @@
-(LOG) {
+(LOG_COMMON) {
     log {
         format formatted "[{ts}] {request>remote_addr} {request>proto} {request>method} <- {status} -> {request>host} {request>uri} {request>headers>User-Agent>[0]}"  {
             time_format "iso8601"
@@ -11,14 +11,35 @@
     }
 }
 
-(TLS) {
+(TLS_MODERN) {
+    protocols tls1.3
+}
+
+(TLS_INTERMEDIATE) {
     protocols tls1.2 tls1.3
     ciphers TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256 TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256 TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384 TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 TLS_ECDHE_ECDSA_WITH_CHACHA20_POLY1305_SHA256 TLS_ECDHE_RSA_WITH_CHACHA20_POLY1305_SHA256
+}
+
+(TLS_OLD) {
+    protocols tls1.0 tls1.3
+    ciphers TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256 TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256 TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384 TLS_ECDHE_ECDSA_WITH_CHACHA20_POLY1305_SHA256 TLS_ECDHE_RSA_WITH_CHACHA20_POLY1305_SHA256 TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA TLS_ECDHE_ECDSA_WITH_AES_256_CBC_SHA TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA TLS_RSA_WITH_AES_128_GCM_SHA256 TLS_RSA_WITH_AES_256_GCM_SHA384 TLS_RSA_WITH_AES_128_CBC_SHA TLS_RSA_WITH_AES_256_CBC_SHA TLS_RSA_WITH_3DES_EDE_CBC_SHA
 }
 
 (HSTS) {
     # HSTS (63072000 seconds)
     header / Strict-Transport-Security "max-age=63072000"
+}
+
+(ACME_CLOUDFLARE) {
+    dns cloudflare {$CLOUDFLARE_API_TOKEN}
+}
+
+(ACME_DNSPOD) {
+    dns dnspod {$DNSPOD_TOKEN}
+}
+
+(ACME_DUCKDNS) {
+    dns duckdns {$DUCKDNS_API_TOKEN}
 }
 
 (ACME_GANDI) {
@@ -31,7 +52,7 @@
 
     # TLS 配置
     tls {
-        import TLS
+        import TLS_INTERMEDIATE
         import ACME_GANDI
     }
 
@@ -39,7 +60,7 @@
     import HSTS
 
     # log
-    import LOG "{args.0}"
+    import LOG_COMMON "{args.0}"
 }
 
 # 开启 HTTP3 实验性支持
