@@ -1,0 +1,15 @@
+version: '3.8'
+services:
+  caddy:
+    image: mritd/poetbot
+    container_name: poetbot
+    restart: always
+    volumes:
+      - /etc/timezone:/etc/timezone
+      - data:/data
+    environment:
+      - POETBOT_APPID
+      - POETBOT_APPHASH
+    #entrypoint: ["bash","-c","sleep 9999999"]
+volumes:
+  data:
