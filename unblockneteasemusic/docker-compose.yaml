@@ -1,0 +1,13 @@
+version: '3.8'
+services:
+  unblockneteasemusic:
+    image: nondanee/unblockneteasemusic
+    container_name: unblockneteasemusic
+    restart: always
+    networks:
+      - caddy
+
+networks:
+  caddy:
+    external:
+      name: caddy
