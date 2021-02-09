@@ -3,6 +3,7 @@ services:
   unblockneteasemusic:
     image: nondanee/unblockneteasemusic
     container_name: unblockneteasemusic
+    command: ["-s"]
     restart: always
     networks:
       - caddy
