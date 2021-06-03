@@ -72,6 +72,8 @@
 }
 
 # 开启 HTTP3 实验性支持
+# sysctl -w net.core.rmem_max=2500000
+# ref https://github.com/lucas-clemente/quic-go/wiki/UDP-Receive-Buffer-Size
 {
     servers :443 {
         protocol {
