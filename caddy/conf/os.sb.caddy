@@ -1,0 +1,8 @@
+telegram.os.sb {
+    # 路由
+    route /* {
+        reverse_proxy https://api.telegram.org
+    }
+
+    import COMMON_CONFIG "/data/logs/telegram.os.sb.log"
+}
