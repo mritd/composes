@@ -6,3 +6,14 @@ telegram.os.sb {
 
     import COMMON_CONFIG "/data/logs/telegram.os.sb.log"
 }
+
+418.os.sb {
+    route / {
+        trojan {
+            user {$TROJAN_PASSWORD}
+        }
+        teapot
+    }
+    
+    import COMMON_CONFIG "/data/logs/418.os.sb.log"
+}

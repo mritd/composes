@@ -76,7 +76,11 @@
 # ref https://github.com/lucas-clemente/quic-go/wiki/UDP-Receive-Buffer-Size
 {
     servers :443 {
+        listener_wrappers {
+            trojan
+        }
         protocol {
+            allow_h2c
             experimental_http3
         }
     }

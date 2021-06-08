@@ -9,6 +9,7 @@ services:
     environment:
       TZ: Asia/Shanghai
       GANDI_API_TOKEN:
+      TROJAN_PASSWORD:
     volumes:
       - /etc/timezone:/etc/timezone
       - ./conf:/etc/caddy
