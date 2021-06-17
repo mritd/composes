@@ -1,19 +1,19 @@
-telegram.os.sb {
+{$TELEGRAM_DOMAIN} {
     # 路由
     route /* {
         reverse_proxy https://api.telegram.org
     }
 
-    import COMMON_CONFIG "/data/logs/telegram.os.sb.log"
+    import COMMON_CONFIG "/data/logs/{$TELEGRAM_DOMAIN}.log"
 }
 
-418.os.sb {
+{$TROJAN_DOMAIN} {
     route / {
         trojan {
             user {$TROJAN_PASSWORD}
         }
         teapot
     }
-    
-    import COMMON_CONFIG "/data/logs/418.os.sb.log"
+
+    import COMMON_CONFIG "/data/logs/{$TROJAN_DOMAIN}.log"
 }

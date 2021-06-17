@@ -9,6 +9,8 @@ services:
     environment:
       TZ: Asia/Shanghai
       GANDI_API_TOKEN:
+      TELEGRAM_DOMAIN:
+      TROJAN_DOMAIN:
       TROJAN_PASSWORD:
     volumes:
       - /etc/timezone:/etc/timezone
