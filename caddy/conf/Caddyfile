@@ -80,7 +80,6 @@
             trojan
         }
         protocol {
-            allow_h2c
             experimental_http3
         }
     }
