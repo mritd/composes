@@ -1,7 +1,9 @@
 {$TELEGRAM_DOMAIN} {
     # 路由
     route /* {
-        reverse_proxy https://api.telegram.org
+        reverse_proxy https://api.telegram.org {
+            header_up Host api.telegram.org
+        }
     }
 
     import COMMON_CONFIG "/data/logs/{$TELEGRAM_DOMAIN}.log"
