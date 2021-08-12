@@ -51,6 +51,13 @@
     dns gandi {$GANDI_API_TOKEN}
 }
 
+(ACME_ALIYUN) {
+    dns alidns {
+        access_key_id {$ALIYUN_ACCESS_KEY_ID}
+        access_key_secret {$ALIYUN_ACCESS_KEY_SECRET}
+    }
+}
+
 (COMMON_CONFIG) {
     # 压缩支持
     encode zstd gzip
