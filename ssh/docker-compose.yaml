@@ -1,0 +1,13 @@
+version: '3.8'
+services:
+  ssh:
+    image: mritd/ssh
+    container_name: ssh
+    hostname: ssh
+    restart: always
+    environment:
+      TZ: Asia/Shanghai
+    volumes:
+      - /volumes:/volumes
+    ports:
+      - "2222:22"
