@@ -7,7 +7,7 @@ www.mritd.com {
 
 mritd.com {
     # 路由
-    route /* {
+    handle /* {
         reverse_proxy mritd_com:80
     }
 
