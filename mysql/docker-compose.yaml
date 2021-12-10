@@ -1,16 +1,19 @@
-version: '3.7'
+version: '3.9'
 services:
   mysql:
-    image: mysql:5.7.30
+    image: mysql:8
     container_name: mysql
     restart: always
+    environment:
+      TZ: Asia/Shanghai
+      MYSQL_ROOT_PASSWORD:
     volumes:
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
       - data:/var/lib/mysql
-      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+#      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
     ports:
       - "3306:3306"
-    environment:
-      - MYSQL_ROOT_PASSWORD
     command: ["--character-set-server=utf8mb4","--collation-server=utf8mb4_unicode_ci"]
 volumes:
   data:

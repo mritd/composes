@@ -1,13 +1,18 @@
-version: '3.7'
+version: '3.9'
 services:
   redis:
-    image: redis:6.0.8-alpine
+    image: redis:6-alpine
     container_name: redis
     restart: always
+    environment:
+      TZ: Asia/Shanghai
     volumes:
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
       - data:/data
     ports:
       - "6379:6379"
-    command: ["redis-server","--appendonly","yes"]
+    command: ["redis-server","--appendonly","yes"] # "--requirepass", "PASSWORD"
 volumes:
   data:
+
