@@ -1,4 +1,4 @@
-version: '3.8'
+version: '3.9'
 services:
   caddy:
     image: mritd/caddy
@@ -23,8 +23,7 @@ services:
       - "443:443/udp"
 networks:
   caddy:
-    external:
-      name: caddy
+    name: caddy
 volumes:
   config:
   data:
