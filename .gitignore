@@ -18,3 +18,4 @@ acng/conf/security.conf
 hysteria/conf
 trojan/config
 cloudreve/config
+caddy/conf/*.caddy
