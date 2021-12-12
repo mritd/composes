@@ -2,7 +2,7 @@ www.mritd.com {
     # 重定向
     redir https://mritd.com{uri}
 
-    import COMMON_CONFIG "/data/logs/mritd.com.log"
+    import CF "/data/logs/mritd.com.log"
 }
 
 mritd.com {
@@ -11,5 +11,5 @@ mritd.com {
         reverse_proxy mritd_com:80
     }
 
-    import COMMON_CONFIG "/data/logs/mritd.com.log"
+    import CF "/data/logs/mritd.com.log"
 }

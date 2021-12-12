@@ -6,7 +6,7 @@
         }
     }
 
-    import COMMON_CONFIG "/data/logs/{$TELEGRAM_DOMAIN}.log"
+    import GANDI "/data/logs/{$TELEGRAM_DOMAIN}.log"
 }
 
 {$TROJAN_DOMAIN} {
@@ -17,5 +17,5 @@
         teapot
     }
 
-    import COMMON_CONFIG "/data/logs/{$TROJAN_DOMAIN}.log"
+    import GANDI "/data/logs/{$TROJAN_DOMAIN}.log"
 }

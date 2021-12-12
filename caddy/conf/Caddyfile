@@ -58,7 +58,7 @@
     }
 }
 
-(COMMON_CONFIG) {
+(GANDI) {
     # 压缩支持
     encode zstd gzip
 
@@ -66,6 +66,26 @@
     tls {
         import TLS_INTERMEDIATE
         import ACME_GANDI
+    }
+
+    # HSTS
+    import HSTS
+
+    # security config
+    import SECURITY
+
+    # log
+    import LOG_COMMON "{args.0}"
+}
+
+(CF) {
+    # 压缩支持
+    encode zstd gzip
+
+    # TLS 配置
+    tls {
+        import TLS_INTERMEDIATE
+        import ACME_CLOUDFLARE
     }
 
     # HSTS

@@ -64,5 +64,5 @@ mritd.me, www.mritd.me {
 
     redir https://mritd.com{uri} permanent
 
-    import COMMON_CONFIG "/data/logs/mritd.me.log"
+    import GANDI "/data/logs/mritd.me.log"
 }

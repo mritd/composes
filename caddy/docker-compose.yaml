@@ -9,6 +9,7 @@ services:
     environment:
       TZ: Asia/Shanghai
       GANDI_API_TOKEN:
+      CLOUDFLARE_API_TOKEN:
       TELEGRAM_DOMAIN:
       TROJAN_DOMAIN:
       TROJAN_PASSWORD:
