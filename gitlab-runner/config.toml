@@ -1,19 +1,38 @@
-concurrent = 1
+concurrent = 4
 check_interval = 0
 
+[session_server]
+  session_timeout = 1800
+
 [[runners]]
-  name = "Test Runner"
-  url = "http://git.mritd.me"
-  token = "c279ec1ac08aec98c7141c7cf2d474"
+  name = "example"
+  url = "https://git.example.com"
+  token = "TOKEN"
   executor = "docker"
-  builds_dir = "/gitlab/runner-builds"
-  cache_dir = "/gitlab/runner-cache"
+  builds_dir = "/data/gitlab_runner/builds"
+  cache_dir = "/data/gitlab_runner/cache"
+  environment = [
+                  "REGISTRY_ADDRESS=reg.example.com",
+                  "REGISTRY_USER=btf-docker",
+                  "REGISTRY_PASSWORD=PASSWORD",
+                  "NPM_CACHE_DIR=/data/gitlab_runner/npm_cache",
+                  "MAVEN_CACHE_DIR=/data/gitlab_runner/maven_cache",
+                  "DOCKERFILES_REPO=https://ci:TOKEN@git.example.com/devops/dockerfiles.git",
+                  "CI_SCRIPTS_REPO=https://ci:TOKEN@git.example.com/devops/ci-scripts.git"
+                ]
   [runners.docker]
     tls_verify = false
-    image = "debian"
-    privileged = false
+    image = "mritd/alpine:3.14"
+    privileged = true
+#    dns = []
+    disable_entrypoint_overwrite = false
+    oom_kill_disable = false
     disable_cache = false
+    pull_policy = "if-not-present"
+    volumes = [
+                "/opt/composes/runner/maven.xml:/usr/local/maven/conf/settings.xml",
+                "/opt/composes/runner/kubectl.conf:/root/.kube/config",
+                "/data/gitlab_runner:/data/gitlab_runner",
+                "/var/run/docker.sock:/var/run/docker.sock"
+              ]
     shm_size = 0
-    volumes = ["/data/gitlab-runner:/gitlab","/var/run/docker.sock:/var/run/docker.sock","/data/maven_repo:/data/repo","/data/maven_repo:/data/maven","/data/gradle:/data/gradle","/data/sonar_cache:/root/.sonar","/data/androidsdk:/usr/local/android","/data/node_modules:/data/node_modules"]
-    extra_hosts = ["git.mritd.me:172.16.0.37"]
-  [runners.cache]

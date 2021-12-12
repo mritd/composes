@@ -1,8 +1,8 @@
-version: '2'
+version: '3.9'
 services:
-  gitlab-runner:
-    container_name: gitlab-runner
-    image: gitlab/gitlab-runner:alpine-v10.1.0
+  runner:
+    container_name: runner
+    image: gitlab/gitlab-runner:alpine3.14-v14.5.1
     restart: always
     network_mode: "host"
     volumes:
