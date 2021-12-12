@@ -1,0 +1,23 @@
+version: '3.9'
+services:
+  adguard:
+    image: adguard/adguardhome
+    container_name: adguard
+    restart: always
+    networks:
+      caddy:
+        ipv4_address: 172.19.0.88
+    environment:
+      TZ: Asia/Shanghai
+    volumes:
+      - /etc/timezone:/etc/timezone
+      - conf:/opt/adguardhome/conf
+      - data:/opt/adguardhome/work
+    ports:
+      - "3000:3000"
+networks:
+  caddy:
+    name: caddy
+volumes:
+  conf:
+  data:
