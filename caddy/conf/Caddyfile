@@ -102,6 +102,9 @@
 # sysctl -w net.core.rmem_max=2500000
 # ref https://github.com/lucas-clemente/quic-go/wiki/UDP-Receive-Buffer-Size
 {
+    # ECC cert
+    key_type p384
+
     servers :443 {
         listener_wrappers {
             trojan
