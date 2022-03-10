@@ -8,8 +8,8 @@ services:
       TZ: Asia/Shanghai
       MYSQL_ROOT_PASSWORD:
     volumes:
-      - /etc/timezone:/etc/timezone:ro
-      - /etc/localtime:/etc/localtime:ro
+#      - /etc/timezone:/etc/timezone:ro
+#      - /etc/localtime:/etc/localtime:ro
       - data:/var/lib/mysql
 #      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
     ports:
