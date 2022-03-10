@@ -66,6 +66,7 @@
     tls {
         import TLS_INTERMEDIATE
         import ACME_GANDI
+        resolvers 8.8.8.8
     }
 
     # HSTS
@@ -86,6 +87,7 @@
     tls {
         import TLS_INTERMEDIATE
         import ACME_CLOUDFLARE
+        resolvers 8.8.8.8
     }
 
     # HSTS
@@ -102,6 +104,9 @@
 # sysctl -w net.core.rmem_max=2500000
 # ref https://github.com/lucas-clemente/quic-go/wiki/UDP-Receive-Buffer-Size
 {
+    # ZeroSSL
+    acme_ca https://acme.zerossl.com/v2/DV90
+
     # ECC cert
     key_type p384
 
