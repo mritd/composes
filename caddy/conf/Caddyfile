@@ -119,6 +119,12 @@
             experimental_http3
         }
     }
+
+    trojan {
+		caddy
+		no_proxy
+		users {$TROJAN_PASSWORD}
+	}
 }
 
 import /etc/caddy/*.caddy

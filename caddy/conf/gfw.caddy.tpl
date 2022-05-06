@@ -12,7 +12,7 @@
 {$TROJAN_DOMAIN} {
     route / {
         trojan {
-            user {$TROJAN_PASSWORD}
+            connect_method
         }
         teapot
     }
