@@ -1,9 +1,0 @@
-version: '2' 
-services:
-  fuckgfw:
-    image: mritd/fuckgfw
-    restart: always
-    volumes: 
-      - ./client_config.json:/fuckgfw/client_config.json
-    ports: 
-      - "1083:1083" 
