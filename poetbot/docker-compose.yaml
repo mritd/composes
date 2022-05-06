@@ -1,6 +1,6 @@
-version: '3.8'
+version: '3.9'
 services:
-  caddy:
+  poetbot:
     image: mritd/poetbot
     container_name: poetbot
     restart: always
