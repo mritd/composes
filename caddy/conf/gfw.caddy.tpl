@@ -14,7 +14,10 @@
         trojan {
             connect_method
         }
-        teapot
+
+        file_server {
+			root /usr/share/caddy
+		}
     }
 
     import GANDI "/data/logs/{$TROJAN_DOMAIN}.log"
