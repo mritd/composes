@@ -1,4 +1,4 @@
-version: '3.7'
+version: '3.9'
 services:
   mritd_com:
     image: mritd/mritd.com
@@ -9,5 +9,4 @@ services:
 
 networks:
   caddy:
-    external:
-      name: caddy
+    name: caddy
