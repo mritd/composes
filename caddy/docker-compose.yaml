@@ -8,6 +8,9 @@ services:
       - caddy
     environment:
       TZ: Asia/Shanghai
+      ACME_EMAIL:
+      ACME_ISSUER:
+      ACME_ISSUER_PARAMS:
       GANDI_API_TOKEN:
       CLOUDFLARE_API_TOKEN:
       TELEGRAM_DOMAIN:
