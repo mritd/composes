@@ -121,10 +121,10 @@
     }
 
     trojan {
-		caddy
-		no_proxy
-		users {$TROJAN_PASSWORD}
-	}
+        caddy
+        no_proxy
+        users {$TROJAN_PASSWORD}
+    }
 }
 
 import /etc/caddy/*.caddy
