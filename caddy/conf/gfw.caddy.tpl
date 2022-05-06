@@ -6,7 +6,7 @@
         }
     }
 
-    import GANDI "/data/logs/{$TELEGRAM_DOMAIN}.log"
+    import COMMON_TLS "/data/logs/{$TELEGRAM_DOMAIN}.log"
 }
 
 {$TROJAN_DOMAIN} {
@@ -20,5 +20,5 @@
         }
     }
 
-    import GANDI "/data/logs/{$TROJAN_DOMAIN}.log"
+    import COMMON_TLS "/data/logs/{$TROJAN_DOMAIN}.log"
 }
