@@ -1,7 +1,7 @@
-version: '3.7'
+version: '3.9'
 services:
   confluence:
-    image: mritd/atlassian-confluence:6.15.6
+    image: mritd/confluence
     container_name: confluence
     volumes:
       - conf:/opt/atlassian/confluence/conf
