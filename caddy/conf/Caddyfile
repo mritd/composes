@@ -1,4 +1,4 @@
-(LOG_COMMON) {
+(LOG_FILE) {
     log {
         format formatted "[{ts}] {request>remote_addr} {request>proto} {request>method} <- {status} -> {request>host} {request>uri} {request>headers>User-Agent>[0]}"  {
             time_format "iso8601"
@@ -35,37 +35,37 @@
     header -Server
 }
 
-(ACME_CLOUDFLARE) {
+(ACME_PROVIDER_CLOUDFLARE) {
     dns cloudflare {$CLOUDFLARE_API_TOKEN}
 }
 
-(ACME_DNSPOD) {
+(ACME_PROVIDER_DNSPOD) {
     dns dnspod {$DNSPOD_TOKEN}
 }
 
-(ACME_DUCKDNS) {
+(ACME_PROVIDER_DUCKDNS) {
     dns duckdns {$DUCKDNS_API_TOKEN}
 }
 
-(ACME_GANDI) {
+(ACME_PROVIDER_GANDI) {
     dns gandi {$GANDI_API_TOKEN}
 }
 
-(ACME_ALIYUN) {
+(ACME_PROVIDER_ALIYUN) {
     dns alidns {
         access_key_id {$ALIYUN_ACCESS_KEY_ID}
         access_key_secret {$ALIYUN_ACCESS_KEY_SECRET}
     }
 }
 
-(GANDI) {
+(ACME_DNS) {
     # 压缩支持
     encode zstd gzip
 
     # TLS 配置
     tls {
         import TLS_INTERMEDIATE
-        import ACME_GANDI
+        import ACME_PROVIDER_{args.0}
         resolvers 8.8.8.8
     }
 
@@ -74,33 +74,9 @@
 
     # security config
     import SECURITY
-
-    # log
-    import LOG_COMMON "{args.0}"
 }
 
-(CF) {
-    # 压缩支持
-    encode zstd gzip
-
-    # TLS 配置
-    tls {
-        import TLS_INTERMEDIATE
-        import ACME_CLOUDFLARE
-        resolvers 8.8.8.8
-    }
-
-    # HSTS
-    import HSTS
-
-    # security config
-    import SECURITY
-
-    # log
-    import LOG_COMMON "{args.0}"
-}
-
-(COMMON_TLS) {
+(ACME_HTTP) {
     # 压缩支持
     encode zstd gzip
 
@@ -115,9 +91,6 @@
 
     # security config
     import SECURITY
-
-    # log
-    import LOG_COMMON "{args.0}"
 }
 
 # 开启 HTTP3 实验性支持
@@ -126,8 +99,8 @@
 {
     # ZeroSSL
     acme_ca https://acme.zerossl.com/v2/DV90
-#    email {$ACME_EMAIL}
-#    cert_issuer {$ACME_ISSUER} {$ACME_ISSUER_PARAMS}
+    email {$ACME_EMAIL:}
+    cert_issuer {$ACME_ISSUER:} {$ACME_ISSUER_PARAMS:}
 
     # ECC cert
     key_type p384
@@ -145,7 +118,7 @@
     trojan {
         caddy
         no_proxy
-        users {$TROJAN_PASSWORD}
+        users {$TROJAN_PASSWORD:}
     }
 }
 
