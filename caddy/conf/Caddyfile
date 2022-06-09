@@ -115,6 +115,9 @@
         }
     }
 
+    order trojan before reverse_proxy
+    order teapot after trojan
+
     trojan {
         caddy
         no_proxy
