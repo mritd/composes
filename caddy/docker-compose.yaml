@@ -6,16 +6,9 @@ services:
     restart: always
     networks:
       - caddy
+    env_file: .env
     environment:
       TZ: Asia/Shanghai
-      ACME_EMAIL:
-      ACME_ISSUER:
-      ACME_ISSUER_PARAMS:
-      GANDI_API_TOKEN:
-      CLOUDFLARE_API_TOKEN:
-      TELEGRAM_DOMAIN:
-      TROJAN_DOMAIN:
-      TROJAN_PASSWORD:
     volumes:
       - /etc/timezone:/etc/timezone
       - ./conf:/etc/caddy
