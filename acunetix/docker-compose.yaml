@@ -1,0 +1,11 @@
+version: '3.9'
+services:
+  acunetix:
+    # admin@admin.com
+    # Admin123
+    image: secfa/awvs
+    init: true
+    container_name: acunetix
+    restart: always
+    ports:
+      - "3443:3443"
