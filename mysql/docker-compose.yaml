@@ -3,6 +3,7 @@ services:
   mysql:
     image: mysql:8
     container_name: mysql
+    platform: linux/amd64
     restart: always
     environment:
       TZ: Asia/Shanghai
