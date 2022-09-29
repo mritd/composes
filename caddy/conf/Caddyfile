@@ -100,8 +100,8 @@
 {
     # ZeroSSL
     acme_ca https://acme.zerossl.com/v2/DV90
-    email {$ACME_EMAIL:}
-    cert_issuer {$ACME_ISSUER:} {$ACME_ISSUER_PARAMS:}
+    #email {$ACME_EMAIL:}
+    #cert_issuer {$ACME_ISSUER:} {$ACME_ISSUER_PARAMS:}
 
     # ECC cert
     key_type p384
@@ -119,7 +119,7 @@
     trojan {
         caddy
         no_proxy
-        users {$TROJAN_PASSWORD:}
+        users {$TROJAN_PASSWORD:thisisunsafe}
     }
 }
 
