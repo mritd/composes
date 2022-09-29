@@ -110,10 +110,7 @@
         listener_wrappers {
             trojan
         }
-        protocol {
-            allow_h2c
-            experimental_http3
-        }
+        protocols h1 h2 h2c h3
     }
 
     order trojan before reverse_proxy
