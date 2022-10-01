@@ -1,6 +1,6 @@
 (LOG_FILE) {
     log {
-        format formatted "[{ts}] {request>remote_addr} {request>proto} {request>method} <- {status} -> {request>host} {request>uri} {request>headers>User-Agent>[0]}"  {
+        format transform "[{ts}] {request>remote_addr} {request>proto} {request>method} <- {status} -> {request>host} {request>uri} {request>headers>User-Agent>[0]}" {
             time_format "iso8601"
         }
         output file "{args.0}" {
@@ -120,6 +120,18 @@
         caddy
         no_proxy
         users {$TROJAN_PASSWORD:thisisunsafe}
+    }
+
+    log trojan {
+        include caddy.listeners.trojan
+        format json {
+            time_format "iso8601"
+        }
+        output file "/data/logs/trojan.log" {
+            roll_size 100mb
+            roll_keep 3
+            roll_keep_for 7d
+        }
     }
 }
 
