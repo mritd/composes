@@ -124,7 +124,7 @@
 
     log trojan {
         include caddy.listeners.trojan
-        format json {
+        format console {
             time_format "iso8601"
         }
         output file "/data/logs/trojan.log" {
