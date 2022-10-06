@@ -1,0 +1,19 @@
+version: '3.9'
+services:
+  uptime:
+    image: louislam/uptime-kuma
+    container_name: uptime
+    restart: always
+    networks:
+      - caddy
+    environment:
+      TZ: Asia/Shanghai
+    volumes:
+      - /etc/timezone:/etc/timezone
+      - data:/app/data
+networks:
+  caddy:
+    name: caddy
+    external: true
+volumes:
+  data:
