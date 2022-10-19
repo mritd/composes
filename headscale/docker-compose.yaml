@@ -1,0 +1,26 @@
+version: "3.9"
+
+services:
+  headscale:
+    container_name: headscale
+    image: headscale/headscale:0.16.4
+    networks:
+      - caddy
+    cap_add:
+      - NET_ADMIN
+      - NET_RAW
+      - SYS_MODULE
+    sysctls:
+      - net.ipv4.ip_forward=1
+      - net.ipv6.conf.all.forwarding=1
+    restart: always
+    volumes:
+      - ./conf:/etc/headscale
+      - data:/var/lib/headscale
+    command: ["headscale", "serve"]
+networks:
+  caddy:
+    name: caddy
+    external: true
+volumes:
+  data:
