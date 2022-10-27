@@ -18,6 +18,7 @@ services:
       - "80:80"
       - "443:443"
       - "443:443/udp"
+      - "5212-5219:5212-5219"
 networks:
   caddy:
     name: caddy

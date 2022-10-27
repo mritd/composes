@@ -107,10 +107,63 @@
     key_type p384
 
     servers :443 {
+        protocols h1 h2 h3
+    }
+
+    servers :5212 {
         listener_wrappers {
             trojan
         }
-        protocols h1 h2 h2c h3
+        protocols h1 h2 h3
+    }
+
+    servers :5213 {
+        listener_wrappers {
+            trojan
+        }
+        protocols h1 h2 h3
+    }
+
+    servers :5214 {
+        listener_wrappers {
+            trojan
+        }
+        protocols h1 h2 h3
+    }
+
+    servers :5215 {
+        listener_wrappers {
+            trojan
+        }
+        protocols h1 h2 h3
+    }
+
+    servers :5216 {
+        listener_wrappers {
+            trojan
+        }
+        protocols h1 h2 h3
+    }
+
+    servers :5217 {
+        listener_wrappers {
+            trojan
+        }
+        protocols h1 h2 h3
+    }
+
+    servers :5218 {
+        listener_wrappers {
+            trojan
+        }
+        protocols h1 h2 h3
+    }
+
+    servers :5219 {
+        listener_wrappers {
+            trojan
+        }
+        protocols h1 h2 h3
     }
 
     order trojan before reverse_proxy
