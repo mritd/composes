@@ -1,0 +1,17 @@
+version: '3.9'
+services:
+  notibot:
+    image: mritd/notibot
+    container_name: notibot
+    restart: always
+    networks:
+      - caddy
+    env_file: .env
+    environment:
+      TZ: Asia/Shanghai
+    volumes:
+      - /etc/timezone:/etc/timezone
+networks:
+  caddy:
+    name: caddy
+    external: true
