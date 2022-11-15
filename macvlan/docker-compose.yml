@@ -1,19 +1,15 @@
-version: '2'
+# docker network create -d macvlan --subnet=192.168.11.0/24 --gateway=192.168.11.1 -o parent=ens34 macvlan
+
+version: '3.9'
 services:
-  centos:
-    image: centos:7
+  macvlan:
+    container_name: macvlan
+    image: mritd/alpine
     restart: always
-    command: /bin/bash -c "sleep 999999"
+    command: /bin/bash -c "sleep infinity"
     networks:
-      app_net:
-        ipv4_address: 10.10.1.34 
+      macvlan:
+        ipv4_address: 192.168.11.33
 networks:
-  app_net:
-    driver: macvlan
-    driver_opts:
-      parent: enp3s0 
-    ipam:
-      config:
-      - subnet: 10.10.1.0/24
-        gateway: 10.10.1.2
-#        ip_range: 10.25.87.32/28
+  macvlan:
+    external: true
