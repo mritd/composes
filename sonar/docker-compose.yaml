@@ -1,0 +1,21 @@
+version: '3.9'
+
+services:
+  sonar:
+    image: sonarqube
+    container_name: sonar
+    restart: always
+    environment:
+      TZ: Asia/Shanghai
+    volumes:
+      - /etc/timezone:/etc/timezone
+      - data:/opt/sonarqube/data
+      - logs:/opt/sonarqube/logs
+      - plugins:/opt/sonarqube/extensions
+    ports:
+      - "9000:9000"
+
+volumes:
+  data:
+  logs:
+  plugins:
