@@ -7,13 +7,15 @@ services:
     networks:
       - caddy
     environment:
-      TZ: Asia/Shanghai
+      - TZ=Asia/Shanghai
     volumes:
       - /etc/timezone:/etc/timezone
       - data:/app/data
+
 networks:
   caddy:
     name: caddy
     external: true
+
 volumes:
   data:
