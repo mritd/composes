@@ -1,4 +1,5 @@
 version: '3.9'
+
 services:
   caddy:
     image: mritd/caddy
@@ -8,7 +9,7 @@ services:
       - caddy
     env_file: .env
     environment:
-      TZ: Asia/Shanghai
+      - TZ=Asia/Shanghai
     volumes:
       - /etc/timezone:/etc/timezone
       - ./conf:/etc/caddy
@@ -18,11 +19,13 @@ services:
       - "80:80"
       - "443:443"
       - "443:443/udp"
-      - "5212-5219:5212-5219"
+      - "5212-5218:5212-5218"
+
 networks:
   caddy:
     name: caddy
     external: true
+
 volumes:
   config:
   data:

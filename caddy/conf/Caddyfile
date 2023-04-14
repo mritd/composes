@@ -159,13 +159,6 @@
         protocols h1 h2 h3
     }
 
-    servers :5219 {
-        listener_wrappers {
-            trojan
-        }
-        protocols h1 h2 h3
-    }
-
     order trojan before reverse_proxy
     order teapot after trojan
 
