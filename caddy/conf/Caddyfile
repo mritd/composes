@@ -110,7 +110,8 @@
         protocols h1 h2 h3
     }
 
-    import XSERVERS
+    import /etc/caddy/*.trojan
 }
+
 
 import /etc/caddy/*.caddy
