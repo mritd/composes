@@ -6,7 +6,7 @@ services:
     hostname: ssh
     restart: always
     environment:
-      TZ: Asia/Shanghai
+      - TZ=Asia/Shanghai
     volumes:
       - /volumes:/volumes
     ports:

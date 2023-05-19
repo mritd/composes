@@ -5,7 +5,7 @@ services:
     container_name: grafana
     restart: always
     environment:
-      TZ: Asia/Shanghai
+      - TZ=Asia/Shanghai
       GF_RENDERING_SERVER_URL: 'http://grafana-image-renderer:8081/render'
       GF_RENDERING_CALLBACK_URL: 'http://grafana:3000/'
       GF_LOG_FILTERS: 'rendering:info'
@@ -21,7 +21,7 @@ services:
     container_name: grafana-image-renderer
     restart: always
     environment:
-      TZ: Asia/Shanghai
+      - TZ=Asia/Shanghai
     volumes:
 #      - /etc/timezone:/etc/timezone:ro
 #      - /etc/localtime:/etc/localtime:ro

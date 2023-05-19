@@ -6,7 +6,7 @@ services:
     restart: always
     network_mode: "host"
     environment:
-      TZ: Asia/Shanghai
+      - TZ=Asia/Shanghai
     volumes:
       - /etc/timezone:/etc/timezone
       - /data/logstash:/data

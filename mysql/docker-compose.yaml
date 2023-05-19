@@ -6,7 +6,7 @@ services:
     platform: linux/amd64
     restart: always
     environment:
-      TZ: Asia/Shanghai
+      - TZ=Asia/Shanghai
       MYSQL_ROOT_PASSWORD:
     volumes:
 #      - /etc/timezone:/etc/timezone:ro

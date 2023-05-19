@@ -8,7 +8,7 @@ services:
       - caddy
     env_file: .env
     environment:
-      TZ: Asia/Shanghai
+      - TZ=Asia/Shanghai
     volumes:
       - /etc/timezone:/etc/timezone
 networks:

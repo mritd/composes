@@ -5,7 +5,7 @@ services:
     container_name: mongo
     restart: always
     environment:
-      TZ: Asia/Shanghai
+      - TZ=Asia/Shanghai
       MONGO_INITDB_ROOT_USERNAME:
       MONGO_INITDB_ROOT_PASSWORD:
     volumes:
