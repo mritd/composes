@@ -1,0 +1,24 @@
+version: '3.9'
+services:
+  derper:
+    image: mritd/derper
+    container_name: derper
+    restart: always
+    networks:
+      - caddy
+    env_file: .env
+    environment:
+      - TZ=Asia/Shanghai
+    volumes:
+      - /etc/timezone:/etc/timezone
+      - /var/run/tailscale:/var/run/tailscale
+      - config:/var/lib/derper
+    ports:
+      - "3456:3456/udp"
+networks:
+  caddy:
+    name: caddy
+    external: true
+
+volumes:
+  config:
