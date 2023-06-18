@@ -64,6 +64,6 @@ mritd.me, www.mritd.me {
 
     redir https://mritd.com{uri} permanent
 
-    import ACME_DNS GANDI
+    import ACME_DNS MODERN GANDI
     import LOG_FILE "/data/logs/mritd.me.log"
 }

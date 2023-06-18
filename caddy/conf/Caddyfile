@@ -64,8 +64,8 @@
 
     # TLS 配置
     tls {
-        import TLS_MODERN
-        import ACME_PROVIDER_{args.0}
+        import TLS_{args.0}
+        import ACME_PROVIDER_{args.1}
         resolvers 8.8.8.8
     }
 
@@ -83,7 +83,7 @@
 
     # TLS 配置
     tls {
-        import TLS_MODERN
+        import TLS_{args.0}
         resolvers 8.8.8.8
     }
 

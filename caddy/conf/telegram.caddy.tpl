@@ -3,6 +3,6 @@
         header_up Host api.telegram.org
     }
 
-    import ACME_HTTP
+    import ACME_HTTP MODERN
     import LOG_FILE "/data/logs/{$TELEGRAM_DOMAIN}.log"
 }
