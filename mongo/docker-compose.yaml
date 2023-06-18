@@ -3,7 +3,7 @@ services:
   mongo:
     image: mongo:5
     container_name: mongo
-    restart: always
+    restart: unless-stopped
     environment:
       - TZ=Asia/Shanghai
       MONGO_INITDB_ROOT_USERNAME:

@@ -3,12 +3,12 @@ services:
   socat-80:
     image: alpine/socat
     container_name: socat-80
-    restart: always
+    restart: unless-stopped
     network_mode: "host"
     command: ["-d", "-d", "TCP-LISTEN:80,fork,reuseaddr", "TCP:1.2.3.4:8080"]
   socat-443:
     image: alpine/socat
     container_name: socat-443
-    restart: always
+    restart: unless-stopped
     network_mode: "host"
     command: ["-d", "-d", "TCP-LISTEN:443,fork,reuseaddr", "TCP:1.2.3.4:8443"]

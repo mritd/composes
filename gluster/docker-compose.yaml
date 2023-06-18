@@ -3,7 +3,7 @@ services:
   gluster:
     image: gluster/gluster-centos:gluster3u12_centos7
     container_name: gluster
-    restart: always
+    restart: unless-stopped
     network_mode: host
     privileged: true
     volumes:

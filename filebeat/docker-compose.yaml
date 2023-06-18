@@ -3,7 +3,7 @@ services:
   filebeat:
     image: mritd/filebeat:5.6.3
     container_name: filebeat
-    restart: always
+    restart: unless-stopped
     volumes:
       - ./filebeat.yml:/etc/filebeat/filebeat.yml
       - /data/docker:/data/docker

@@ -4,7 +4,7 @@ services:
   kibana:
     container_name: kibana
     image: docker.elastic.co/kibana/kibana:7.9.2
-    restart: always
+    restart: unless-stopped
     ports:
       - 5601:5601
     volumes:

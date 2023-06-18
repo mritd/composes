@@ -2,7 +2,7 @@ version: '3.7'
 services:
   kafka-manager:
     image: mritd/kafka-manager
-    restart: always
+    restart: unless-stopped
     ports:
       - 9000:9000
     environment:

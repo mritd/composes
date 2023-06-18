@@ -3,7 +3,7 @@ services:
   verdaccio:
     image: mritd/verdaccio:v3.10.2
     container_name: verdaccio
-    restart: always
+    restart: unless-stopped
     init: true
     volumes: 
       - data:/verdaccio

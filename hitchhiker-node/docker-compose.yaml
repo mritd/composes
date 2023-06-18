@@ -3,6 +3,6 @@ services:
   hitchhiker-node:
     image: mritd/hitchhiker-node:v0.2
     container_name: hitchhiker-node
-    restart: always
+    restart: unless-stopped
     volumes: 
       - ./config.json:/config.json

@@ -3,7 +3,7 @@ services:
   demo:
     image: mritd/demo
     container_name: demo
-    restart: always
+    restart: unless-stopped
     networks:
       - nginx
 

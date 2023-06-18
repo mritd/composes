@@ -3,7 +3,7 @@ services:
   teleport:
     image: mritd/teleport:v3.2.2
     container_name: teleport
-    restart: always
+    restart: unless-stopped
     ports:
       - "3022-3026:3022-3026"
       - "3080:3080"

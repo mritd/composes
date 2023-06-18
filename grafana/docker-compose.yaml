@@ -3,7 +3,7 @@ services:
   grafana:
     image: grafana/grafana:8.3.3
     container_name: grafana
-    restart: always
+    restart: unless-stopped
     environment:
       - TZ=Asia/Shanghai
       GF_RENDERING_SERVER_URL: 'http://grafana-image-renderer:8081/render'
@@ -19,7 +19,7 @@ services:
   grafana-image-renderer:
     image: grafana/grafana-image-renderer:3.3.0
     container_name: grafana-image-renderer
-    restart: always
+    restart: unless-stopped
     environment:
       - TZ=Asia/Shanghai
     volumes:

@@ -3,7 +3,7 @@ services:
   notibot:
     image: mritd/notibot
     container_name: notibot
-    restart: always
+    restart: unless-stopped
     networks:
       - caddy
     env_file: .env

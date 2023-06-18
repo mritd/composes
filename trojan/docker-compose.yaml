@@ -3,7 +3,7 @@ services:
   trojan:
     image: trojangfw/trojan
     container_name: trojan
-    restart: always
+    restart: unless-stopped
     ports:
     - "5212:5212"
     volumes:
@@ -12,7 +12,7 @@ services:
   cloudreve:
     image: mritd/cloudreve:fix-sqlite
     container_name: cloudreve
-    restart: always
+    restart: unless-stopped
     volumes:
     - ./config:/config
     - data:/data

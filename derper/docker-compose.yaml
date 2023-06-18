@@ -3,7 +3,7 @@ services:
   derper:
     image: mritd/derper
     container_name: derper
-    restart: always
+    restart: unless-stopped
     networks:
       - caddy
     env_file: .env

@@ -3,7 +3,7 @@ services:
   zk1:
     image: zookeeper:3.5.5
     container_name: zk1
-    restart: always
+    restart: unless-stopped
     hostname: zk1
     volumes:
       - zk1_data:/data
@@ -17,7 +17,7 @@ services:
   zk2:
     image: zookeeper:3.5.5
     container_name: zk2
-    restart: always
+    restart: unless-stopped
     hostname: zk2
     volumes:
       - zk2_data:/data
@@ -31,7 +31,7 @@ services:
   zk3:
     image: zookeeper:3.5.5
     container_name: zk3
-    restart: always
+    restart: unless-stopped
     hostname: zk3
     volumes:
       - zk3_data:/data

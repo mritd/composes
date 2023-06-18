@@ -3,7 +3,7 @@ services:
   vipvideo:
     image: mritd/vipvideo
     container_name: vipvideo
-    restart: always
+    restart: unless-stopped
     networks:
       - nginx
 networks:

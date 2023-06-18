@@ -4,7 +4,7 @@ services:
     image: mysql:8
     container_name: mysql
     platform: linux/amd64
-    restart: always
+    restart: unless-stopped
     environment:
       - TZ=Asia/Shanghai
       MYSQL_ROOT_PASSWORD:

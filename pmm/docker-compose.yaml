@@ -3,7 +3,7 @@ services:
   pmm:
     image: percona/pmm-server:2.3.0
     container_name: pmm
-    restart: always
+    restart: unless-stopped
     volumes:
       - data:/srv
     ports:

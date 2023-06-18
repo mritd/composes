@@ -13,7 +13,7 @@ services:
     sysctls:
       - net.ipv4.ip_forward=1
       - net.ipv6.conf.all.forwarding=1
-    restart: always
+    restart: unless-stopped
     volumes:
       - ./conf:/etc/headscale
       - data:/var/lib/headscale

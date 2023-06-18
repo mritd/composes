@@ -6,6 +6,6 @@ services:
     image: secfa/awvs
     init: true
     container_name: acunetix
-    restart: always
+    restart: unless-stopped
     ports:
       - "3443:3443"

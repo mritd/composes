@@ -3,7 +3,7 @@ services:
   athens:
     image: gomods/athens:v0.4.0
     container_name: athens
-    restart: always
+    restart: unless-stopped
     environment:
       - ATHENS_STORAGE_TYPE
       - ATHENS_DISK_STORAGE_ROOT

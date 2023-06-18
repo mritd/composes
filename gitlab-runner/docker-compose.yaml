@@ -3,7 +3,7 @@ services:
   runner:
     container_name: runner
     image: gitlab/gitlab-runner:alpine3.14-v14.5.1
-    restart: always
+    restart: unless-stopped
     network_mode: "host"
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock

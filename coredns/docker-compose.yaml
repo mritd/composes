@@ -3,7 +3,7 @@ services:
   coredns:
     image: coredns/coredns:1.5.0
     container_name: coredns
-    restart: always
+    restart: unless-stopped
     network_mode: "host"
     volumes:
       - ./Corefile:/etc/Corefile

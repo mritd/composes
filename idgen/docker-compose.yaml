@@ -5,7 +5,7 @@ services:
     container_name: idgen
     networks:
       - caddy
-    restart: always
+    restart: unless-stopped
 
 networks:
   caddy:

@@ -3,7 +3,7 @@ services:
   poetbot:
     image: mritd/poetbot
     container_name: poetbot
-    restart: always
+    restart: unless-stopped
     volumes:
       - /etc/timezone:/etc/timezone
       - data:/data

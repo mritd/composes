@@ -3,7 +3,7 @@ services:
   uptime:
     image: louislam/uptime-kuma
     container_name: uptime
-    restart: always
+    restart: unless-stopped
     networks:
       - caddy
     environment:

@@ -3,7 +3,7 @@ services:
   hitchhiker:
     image: mritd/hitchhiker:v0.13
     container_name: hitchhiker
-    restart: always
+    restart: unless-stopped
     volumes: 
       - ./conf/appconfig.json:/Hitchhiker/appconfig.json
       - project:/Hitchhiker/build/global_data/project
@@ -15,7 +15,7 @@ services:
   hitchhiker-mysql:
     image: mysql:5.7
     container_name: hitchhiker-mysql
-    restart: always
+    restart: unless-stopped
     environment:
       - MYSQL_ROOT_PASSWORD=hitchhiker888
       - MYSQL_DATABASE=hitchhiker-prod

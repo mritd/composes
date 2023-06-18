@@ -13,7 +13,7 @@ services:
       - ./conf/acng.conf:/etc/apt-cacher-ng/acng.conf
       - ./conf/security.conf:/etc/apt-cacher-ng/security.conf
       - apt-cacher-ng:/var/cache/apt-cacher-ng
-    restart: always
+    restart: unless-stopped
 
 volumes:
   apt-cacher-ng:

@@ -3,7 +3,7 @@ services:
   logstash:
     image: docker.elastic.co/logstash/logstash:7.9.3
     container_name: logstash
-    restart: always
+    restart: unless-stopped
     network_mode: "host"
     environment:
       - TZ=Asia/Shanghai

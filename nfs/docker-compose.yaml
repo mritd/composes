@@ -3,7 +3,7 @@ services:
   nfs:
     image: erichough/nfs-server:2.2.1
     container_name: nfs_server
-    restart: always
+    restart: unless-stopped
     environment:
     #  - NFS_VERSION=4
     #  - NFS_DISABLE_VERSION_3=1

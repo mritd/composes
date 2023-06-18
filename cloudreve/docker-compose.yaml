@@ -3,7 +3,7 @@ services:
   cloudreve:
     image: mritd/cloudreve:relativepath
     container_name: cloudreve
-    restart: always
+    restart: unless-stopped
     ports:
     - "5212:5212"
     - "5443:5443"
@@ -15,7 +15,7 @@ services:
   aria2:
     image: p3terx/aria2-pro
     container_name: aria2
-    restart: always
+    restart: unless-stopped
     volumes:
     - shared:/downloads
     environment:
@@ -31,7 +31,7 @@ services:
   ariang:
     image: p3terx/ariang
     container_name: ariang
-    restart: always
+    restart: unless-stopped
     ports:
     - 6880:6880
 volumes:

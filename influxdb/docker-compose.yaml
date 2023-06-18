@@ -3,7 +3,7 @@ services:
   influxdb:
     image: influxdb:1.7-alpine
     container_name: influxdb
-    restart: always
+    restart: unless-stopped
     volumes:
       - data:/var/lib/influxdb
     ports:

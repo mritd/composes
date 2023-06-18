@@ -3,7 +3,7 @@ services:
   adguard:
     image: adguard/adguardhome
     container_name: adguard
-    restart: always
+    restart: unless-stopped
     networks:
       caddy:
         ipv4_address: 172.19.0.88

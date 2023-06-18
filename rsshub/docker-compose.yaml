@@ -3,7 +3,7 @@ services:
   rsshub:
     image: mritd/rsshub:v0.0.238
     container_name: rsshub
-    restart: always
+    restart: unless-stopped
     networks:
       - nginx
 networks:

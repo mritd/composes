@@ -3,7 +3,7 @@ services:
   redis:
     image: redis:6-alpine
     container_name: redis
-    restart: always
+    restart: unless-stopped
     environment:
       - TZ=Asia/Shanghai
     volumes:
