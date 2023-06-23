@@ -13,13 +13,13 @@ log trojan {
         time_format "iso8601"
     }
     output file "/data/logs/trojan.log" {
-        roll_size 100mb
+        roll_size 50mb
         roll_keep 3
         roll_keep_for 7d
     }
 }
 
-servers :6666 {
+servers :2443 {
     listener_wrappers {
         trojan
     }

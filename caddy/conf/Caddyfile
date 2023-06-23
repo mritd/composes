@@ -109,7 +109,7 @@
         protocols h1 h2 h3
     }
 
-    import /etc/caddy/*.trojan
+    import /etc/caddy/xserver
 }
 
 
