@@ -1,0 +1,102 @@
+# config refs ==> https://gitlab.com/gitlab-org/omnibus-gitlab/blob/master/files/gitlab-config-template/gitlab.rb.template
+version: '3.9'
+services:
+  gitlab:
+    image: 'gitlab/gitlab-ce:16.0.2-ce.0'
+    container_name: gitlab
+    restart: always
+    privileged: true
+    hostname: 'git.example.com'
+    environment:
+      GITLAB_OMNIBUS_CONFIG: |
+        external_url 'https://git.example.com'
+
+        gitlab_rails['time_zone'] = 'Asia/Shanghai'
+
+        ### GitLab email server settings
+        ###! Docs: https://docs.gitlab.com/omnibus/settings/smtp.html
+        ###! **Use smtp instead of sendmail/postfix.**
+        gitlab_rails['smtp_enable'] = true
+        gitlab_rails['smtp_address'] = "mail.example.com"
+        gitlab_rails['smtp_port'] = 25
+        gitlab_rails['smtp_user_name'] = "gitlab"
+        gitlab_rails['smtp_password'] = "password"
+        gitlab_rails['smtp_domain'] = "example.com"
+        gitlab_rails['smtp_authentication'] = "login"
+        gitlab_rails['smtp_enable_starttls_auto'] = true
+        gitlab_rails['smtp_openssl_verify_mode'] = 'peer'
+        gitlab_rails['gitlab_email_from'] = 'gitlab@example.com'
+        gitlab_rails['gitlab_email_reply_to'] = 'no-reply@example.com'
+
+        ### Default Theme
+        ### Available values:
+        ##! `1`  for Indigo
+        ##! `2`  for Dark
+        ##! `3`  for Light
+        ##! `4`  for Blue
+        ##! `5`  for Green
+        ##! `6`  for Light Indigo
+        ##! `7`  for Light Blue
+        ##! `8`  for Light Green
+        ##! `9`  for Red
+        ##! `10` for Light Red
+        gitlab_rails['gitlab_default_theme'] = 2
+
+        ### Reply by email
+        ###! Allow users to comment on issues and merge requests by replying to
+        ###! notification emails.
+        ###! Docs: https://docs.gitlab.com/ee/administration/reply_by_email.html
+        gitlab_rails['incoming_email_enabled'] = true
+
+        ### GitLab Shell settings for GitLab
+        gitlab_rails['gitlab_shell_ssh_port'] = 2222
+        gitlab_rails['gitlab_shell_git_timeout'] = 800
+
+        #### Change the initial default admin password and shared runner registration tokens.
+        ####! **Only applicable on initial setup, changing these settings after database
+        ####!   is created and seeded won't yield any change.**
+        gitlab_rails['initial_root_password'] = "Olm5HqNeubSKt7p"
+        gitlab_rails['initial_shared_runners_registration_token'] = "0VyaN0b4qNgQQIf"
+
+        ### Settings used by GitLab application
+        gitlab_rails['registry_enabled'] = false
+
+        ### Settings used by Registry application
+        registry['enable'] = false
+
+        ## GitLab NGINX
+        nginx['listen_port'] = '2080'
+        nginx['listen_https'] = false
+        nginx['redirect_http_to_https'] = true
+        nginx['real_ip_header'] = 'X-Real-IP'
+        nginx['real_ip_recursive'] = 'on'
+
+        ## GitLab Logging
+        logging['logrotate_frequency'] = "daily" # rotate logs daily
+        logging['logrotate_size'] = nil # do not rotate by size by default
+        logging['logrotate_rotate'] = 30 # keep 30 rotated logs
+        logging['logrotate_compress'] = "compress" # see 'man logrotate'
+        logging['logrotate_method'] = "copytruncate" # see 'man logrotate'
+        logging['logrotate_postrotate'] = nil # no postrotate command by default
+        logging['logrotate_dateformat'] = nil # use date extensions for rotated files rather than numbers e.g. a value of "-%Y-%m-%d" would give rotated files like p
+
+    networks:
+      - caddy
+    ports:
+      - '2222:2222'
+      - '2080:2080'
+    volumes:
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
+      - config:/etc/gitlab
+      - logs:/var/log/gitlab
+      - data:/var/opt/gitlab
+
+networks:
+  caddy:
+    external: true
+
+volumes:
+  config:
+  logs:
+  data:
