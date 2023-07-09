@@ -83,7 +83,7 @@ services:
     networks:
       - caddy
     ports:
-      - '2222:2222'
+      - '2222:22'
       - '2080:2080'
     volumes:
       - /etc/timezone:/etc/timezone:ro
