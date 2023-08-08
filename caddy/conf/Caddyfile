@@ -120,6 +120,18 @@
             time_format "wall"
         }
     }
+
+    log default-access {
+        include http.log.access
+        output file "/data/logs/default-access.log" {
+            roll_size 10mb
+            roll_keep 3
+            roll_keep_for 7d
+        }
+        format transform "[{ts}] {request>remote_ip} [{status}] {request>proto} {request>method} {request>host} {request>uri} {request>headers>User-Agent>[0]}" {
+            time_format "wall"
+        }
+    }
 }
 
 
