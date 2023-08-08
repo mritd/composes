@@ -1,0 +1,34 @@
+version: '3.9'
+
+services:
+  snell:
+    image: mritd/snell
+    container_name: snell
+    restart: unless-stopped
+    networks:
+      - caddy
+    env_file: .env
+    environment:
+      - TZ=Asia/Shanghai
+    volumes:
+      - /etc/timezone:/etc/timezone
+
+  shadow-tls:
+    image: ghcr.io/ihciah/shadow-tls
+    container_name: shadow-tls
+    restart: unless-stopped
+    networks:
+      - caddy
+    env_file: .env
+    environment:
+      - TZ=Asia/Shanghai
+    volumes:
+      - /etc/timezone:/etc/timezone
+    ports:
+      - "49152:49152"
+
+networks:
+  caddy:
+    name: caddy
+    external: true
+
