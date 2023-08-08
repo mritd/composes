@@ -1,9 +1,9 @@
 (LOG_FILE) {
     log {
         format transform "[{ts}] {request>remote_ip} [{status}] {request>proto} {request>method} {request>host} {request>uri} {request>headers>User-Agent>[0]}" {
-            time_format "iso8601"
+            time_format "wall"
         }
-        output file "{args.0}" {
+        output file "{args[0]}" {
             roll_size 100mb
             roll_keep 3
             roll_keep_for 7d
@@ -11,16 +11,16 @@
     }
 }
 
-(TLS_MODERN) {
+(TLS_1.3) {
     protocols tls1.3
 }
 
-(TLS_INTERMEDIATE) {
+(TLS_1.2) {
     protocols tls1.2 tls1.3
     ciphers TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256 TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256 TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384 TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 TLS_ECDHE_ECDSA_WITH_CHACHA20_POLY1305_SHA256 TLS_ECDHE_RSA_WITH_CHACHA20_POLY1305_SHA256
 }
 
-(TLS_OLD) {
+(TLS_1.0) {
     protocols tls1.0 tls1.3
     ciphers TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256 TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256 TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384 TLS_ECDHE_ECDSA_WITH_CHACHA20_POLY1305_SHA256 TLS_ECDHE_RSA_WITH_CHACHA20_POLY1305_SHA256 TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA TLS_ECDHE_ECDSA_WITH_AES_256_CBC_SHA TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA TLS_RSA_WITH_AES_128_GCM_SHA256 TLS_RSA_WITH_AES_256_GCM_SHA384 TLS_RSA_WITH_AES_128_CBC_SHA TLS_RSA_WITH_AES_256_CBC_SHA TLS_RSA_WITH_3DES_EDE_CBC_SHA
 }
@@ -64,8 +64,8 @@
 
     # TLS 配置
     tls {
-        import TLS_{args.0}
-        import ACME_PROVIDER_{args.1}
+        import {args[1]}
+        import ACME_PROVIDER_{args[0]}
         resolvers 8.8.8.8
     }
 
@@ -83,7 +83,7 @@
 
     # TLS 配置
     tls {
-        import TLS_{args.0}
+        import {args[0]}
         resolvers 8.8.8.8
     }
 
@@ -109,7 +109,17 @@
         protocols h1 h2 h3
     }
 
+    default_sni default-server
+    fallback_sni default-server
+
     import /etc/caddy/xserver
+
+    log default {
+        output stdout
+        format json {
+            time_format "wall"
+        }
+    }
 }
 
 

@@ -10,7 +10,7 @@ trojan {
 log trojan {
     include caddy.listeners.trojan
     format console {
-        time_format "iso8601"
+        time_format "wall"
     }
     output file "/data/logs/trojan.log" {
         roll_size 50mb
@@ -19,6 +19,12 @@ log trojan {
     }
 }
 
+#table ip nat {
+#    chain xproxy {
+#        type nat hook prerouting priority dstnat; policy accept;
+#        tcp dport 3306-3399 dnat to :2443
+#    }
+#}
 servers :2443 {
     listener_wrappers {
         trojan
