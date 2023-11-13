@@ -21,3 +21,4 @@ cloudreve/config
 caddy/conf/*.trojan
 caddy/conf/*.caddy
 tuic/conf
+headscale/conf
