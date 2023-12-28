@@ -1,0 +1,20 @@
+version: '3.9'
+
+services:
+  lobe-chat:
+    image: lobehub/lobe-chat
+    container_name: lobe-chat
+    restart: unless-stopped
+    networks:
+      - caddy
+    env_file: .env
+    environment:
+      - TZ=Asia/Shanghai
+    volumes:
+      - /etc/timezone:/etc/timezone
+
+networks:
+  caddy:
+    name: caddy
+    external: true
+
