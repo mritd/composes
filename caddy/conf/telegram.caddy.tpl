@@ -4,5 +4,5 @@
     }
 
     import ACME_HTTP TLS_1.3
-    import LOG_FILE "/data/logs/{$TELEGRAM_DOMAIN}.log"
+    import LOG_FILE "{$TELEGRAM_DOMAIN}"
 }

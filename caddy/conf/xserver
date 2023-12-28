@@ -12,7 +12,7 @@ log trojan {
     format console {
         time_format "wall"
     }
-    output file "/data/logs/trojan.log" {
+    output file "trojan" {
         roll_size 50mb
         roll_keep 3
         roll_keep_for 7d
