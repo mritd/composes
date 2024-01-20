@@ -97,10 +97,9 @@
 # sysctl -w net.core.rmem_max=2500000
 # ref https://github.com/lucas-clemente/quic-go/wiki/UDP-Receive-Buffer-Size
 {
-    # ZeroSSL
-    acme_ca https://acme.zerossl.com/v2/DV90
-    #email {$ACME_EMAIL:}
-    #cert_issuer {$ACME_ISSUER:} {$ACME_ISSUER_PARAMS:}
+    # Let's Encrypt
+    acme_ca https://acme-v02.api.letsencrypt.org/directory
+    cert_issuer acme
 
     # ECC cert
     key_type p384
