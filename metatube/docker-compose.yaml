@@ -1,0 +1,24 @@
+version: '3.9'
+
+services:
+  metatube:
+    image: metatube/metatube-server
+    container_name: metatube
+    restart: unless-stopped
+    networks:
+      - caddy
+    env_file: .env
+    environment:
+      - TZ=Asia/Shanghai
+    volumes:
+      - /etc/timezone:/etc/timezone
+      - config:/config
+    command: ["-dsn", "/config/metatube.db"]
+
+networks:
+  caddy:
+    name: caddy
+    external: true
+
+volumes:
+  config:
