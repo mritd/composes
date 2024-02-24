@@ -1,0 +1,22 @@
+version: '3.9'
+
+services:
+  telegram-bot-api:
+    image: aiogram/telegram-bot-api
+    container_name: telegram-bot-api
+    restart: unless-stopped
+    networks:
+      - caddy
+    env_file: .env
+    environment:
+      - TZ=Asia/Shanghai
+    volumes:
+      - /etc/timezone:/etc/timezone
+      - data:/var/lib/telegram-bot-api
+networks:
+  caddy:
+    name: caddy
+    external: true
+
+volumes:
+  data:
