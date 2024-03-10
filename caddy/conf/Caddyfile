@@ -48,7 +48,7 @@
 }
 
 (ACME_PROVIDER_GANDI) {
-    dns gandi {$GANDI_API_TOKEN}
+    dns gandi {$GANDI_BEARER_TOKEN}
 }
 
 (ACME_PROVIDER_ALIYUN) {
@@ -102,14 +102,19 @@
     cert_issuer acme
 
     # ECC cert
-    key_type p384
+    key_type p256
+    ocsp_interval 6h
 
     servers :443 {
         protocols h1 h2 h3
+        log_credentials
     }
 
     default_sni default-server
     fallback_sni default-server
+    
+    grace_period 10s
+    shutdown_delay 30s
 
     import /etc/caddy/xserver
 
