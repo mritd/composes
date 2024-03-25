@@ -22,3 +22,4 @@ caddy/conf/*.trojan
 caddy/conf/*.caddy
 tuic/conf
 headscale/conf
+hysteria/config.yaml

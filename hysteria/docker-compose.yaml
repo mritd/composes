@@ -1,24 +1,14 @@
-version: '3.7'
+version: "3.9"
 services:
   hysteria:
-    image: mritd/hysteria
+    image: tobyxdd/hysteria:v2.4.0
     container_name: hysteria
-    restart: unless-stopped
+    restart: always
     network_mode: "host"
     volumes:
-      - ./conf:/etc/hysteria
-    command:
-      - proxy
-      - server
-      - -listen
-      - ":3000"
-      - -auth
-      - /etc/hysteria/auth
-      - -cert
-      - /etc/hysteria/ssl/hysteria.cer
-      - -key
-      - /etc/hysteria/ssl/hysteria.key
-      - -max-conn-client
-      - "30000"
-      - -obfs
-      - bleem
+      - acme:/acme
+      - ./config.yaml:/etc/hysteria.yaml
+    command: ["server", "-c", "/etc/hysteria.yaml"]
+
+volumes:
+  acme:
