@@ -1,2 +1,0 @@
-CREATE USER taiga WITH PASSWORD 'taiga';
-CREATE DATABASE taiga WITH OWNER taiga ENCODING 'utf-8' LC_COLLATE 'en_US.utf8' TEMPLATE template0;

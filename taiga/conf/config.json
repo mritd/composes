@@ -1,7 +1,0 @@
-{
-    "url": "amqp://taiga:taiga@172.16.0.30:5672/taiga",
-    "secret": "DuEitHBCmausDXQpQJqY7QnJ",
-    "webSocketServer": {
-        "port": 8888
-    }
-}
