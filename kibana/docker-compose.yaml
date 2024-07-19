@@ -1,5 +1,5 @@
 # kibana.yaml: https://raw.githubusercontent.com/elastic/kibana/master/config/kibana.yml
-version: '3.8'
+
 services:
   kibana:
     container_name: kibana

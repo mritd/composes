@@ -1,4 +1,4 @@
-version: '3.7'
+
 services:
   nfs:
     image: erichough/nfs-server:2.2.1

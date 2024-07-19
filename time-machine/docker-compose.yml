@@ -1,4 +1,4 @@
-version: '2'
+
 services:
   time-machine:
     image: mritd/time-machine

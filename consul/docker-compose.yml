@@ -1,4 +1,4 @@
-version: '2'
+
 services: 
   consul:
     container_name: consul1

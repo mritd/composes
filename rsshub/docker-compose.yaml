@@ -1,4 +1,4 @@
-version: '3.6'
+
 services:
   rsshub:
     image: mritd/rsshub:v0.0.238

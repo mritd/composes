@@ -1,4 +1,4 @@
-version: '3.9'
+
 services:
   mongo:
     image: mongo:5

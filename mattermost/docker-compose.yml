@@ -1,4 +1,4 @@
-version: '3.5'
+
 services:
   mattermost:
     image: mritd/mattermost:5.0.0

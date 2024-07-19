@@ -1,6 +1,6 @@
 # docker network create -d macvlan --subnet=192.168.11.0/24 --gateway=192.168.11.1 -o parent=ens34 macvlan
 
-version: '3.9'
+
 services:
   macvlan:
     container_name: macvlan

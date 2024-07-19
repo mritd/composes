@@ -1,5 +1,5 @@
 # config refs ==> https://gitlab.com/gitlab-org/omnibus-gitlab/blob/master/files/gitlab-config-template/gitlab.rb.template
-version: '3.9'
+
 services:
   gitlab:
     image: 'gitlab/gitlab-ce:16.0.2-ce.0'

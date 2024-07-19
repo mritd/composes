@@ -1,4 +1,4 @@
-version: '3.6'
+
 services:
   athens:
     image: gomods/athens:v0.4.0
