@@ -1,0 +1,16 @@
+services:
+  tgupdater:
+    image: mritd/tgupdater
+    container_name: tgupdater
+    restart: unless-stopped
+    volumes:
+      - /etc/timezone:/etc/timezone
+      - data:/data
+    environment:
+      - APP_ID
+      - APP_HASH
+      - FIRST_NAME
+      - ID_PREFIX
+#   command: ["bash","-c","sleep 9999999"]
+volumes:
+  data:
