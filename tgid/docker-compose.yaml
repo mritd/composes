@@ -1,0 +1,18 @@
+services:
+  tgid:
+    image: mritd/tgid
+    container_name: tgid
+    restart: unless-stopped
+    networks:
+      - caddy
+    env_file: .env
+    environment:
+      - TZ=Asia/Shanghai
+    volumes:
+      - /etc/timezone:/etc/timezone
+
+networks:
+  caddy:
+    name: caddy
+    external: true
+
