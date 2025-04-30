@@ -1,8 +1,6 @@
-
-
 services:
   metatube:
-    image: metatube/metatube-server
+    image: ghcr.io/metatube-community/metatube-server
     container_name: metatube
     restart: unless-stopped
     networks:
