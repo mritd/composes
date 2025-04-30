@@ -1,7 +1,7 @@
 
 services:
   tailscale:
-    image: tailscale/tailscale:v1.78.3
+    image: tailscale/tailscale:stable
     container_name: tailscale
     restart: unless-stopped
     networks:
