@@ -20,6 +20,6 @@ trojan/config
 cloudreve/config
 caddy/conf/*.trojan
 caddy/conf/*.caddy
-tuic/conf
+tuic-server/config.toml
 headscale/conf
 hysteria/config.yaml
