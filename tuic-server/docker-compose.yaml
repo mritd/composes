@@ -1,0 +1,19 @@
+services:
+  tuic-server:
+    image: ghcr.io/itsusinn/tuic-server
+    container_name: tuic-server
+    restart: unless-stopped
+    networks:
+      - caddy
+    environment:
+      - TZ=Asia/Shanghai
+    volumes:
+      - /etc/timezone:/etc/timezone
+      - ./config.toml:/etc/tuic/config.toml:ro
+    ports:
+      - "6443:6443/udp"
+
+networks:
+  caddy:
+    name: caddy
+    external: true
