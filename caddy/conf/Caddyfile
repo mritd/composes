@@ -84,7 +84,6 @@
     # TLS 配置
     tls {
         import {args[0]}
-        resolvers 8.8.8.8
     }
 
     # HSTS
