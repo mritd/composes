@@ -1,0 +1,17 @@
+services:
+  docx_author_api:
+    image: mritd/docx_author_api
+    container_name: docx_author_api
+    restart: unless-stopped
+    env_file: .env
+    networks:
+      - caddy
+    volumes:
+      - data:/data
+
+volumes:
+  data:
+
+networks:
+  caddy:
+    external: true
