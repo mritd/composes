@@ -1,0 +1,15 @@
+services:
+  dcu:
+    image: mritd/dcu
+    container_name: dcu
+    restart: unless-stopped
+    env_file: .env
+    networks:
+      - caddy
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /opt/composes:/opt/composes
+
+networks:
+  caddy:
+    external: true
