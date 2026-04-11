@@ -1,90 +1,3 @@
-order trojan before reverse_proxy
-order teapot after trojan
-
-trojan {
-    caddy
-    no_proxy
-    users {$TROJAN_PASSWORD:thisisunsafe}
-}
-
-log trojan {
-    include caddy.listeners.trojan
-    format console {
-        time_format "wall"
-    }
-    output file "trojan" {
-        roll_size 50mb
-        roll_keep 3
-        roll_keep_for 7d
-    }
-}
-
-# TUIC v5 proxy server configuration.
-tuic {
-    # UDP address to listen on. TUIC shares this port with H3.
-    listen :2443
-
-    # Authorized users: <uuid> <password>
-    users {
-        {$TUIC_UUID} {$TUIC_PASSWORD}
-    }
-
-    # Congestion control algorithm: bbr | bbr_meta_v1 | cubic | new_reno
-    congestion_control bbr_meta_v1
-
-    # How long to wait for client authentication before falling back to H3.
-    auth_timeout 3s
-
-    # QUIC keep-alive PING interval. The server emits a PING frame
-    # at this cadence, keeping the connection alive at the QUIC
-    # transport layer. MaxIdleTimeout is set to 3x this value.
-    keepalive_period 10s
-
-    # Enable QUIC 0-RTT.
-    zero_rtt true
-
-    # Maximum UDP relay packet size before fragmentation.
-    max_udp_relay_packet_size 1200
-
-    # Maximum UDP relay packet size before fragmentation.
-    max_udp_relay_packet_size 1200
-    
-    # BBR / QUIC tuning.
-    #
-    # These two fields are the validated optimization for clean high-BDP
-    # links (CN2 GIA, ~150ms RTT, no packet loss). Production testing
-    # showed buffer health improving from 3-5s to ~20s on YouTube 4K
-    # with these alone — they affect transfer *startup state* without
-    # touching BBR's control loop, so they are pure wins.
-    #
-    # bbr_initial_cwnd works for both bbr and bbr_meta_v1.
-    # initial_packet_size is QUIC-level and applies to every algorithm.
-    #
-    # Three reference profiles (initial_cwnd / packet_size):
-    #   Profile A — conservative    128 / 1350
-    #   Profile B — moderate    ⭐   512 / 1350   (current)
-    #   Profile C — aggressive     2048 / 1350
-    #
-    # Defaults if omitted: 32 / 1280
-    # Valid ranges: [32, 8192] / [1200, 1452]
-    bbr_initial_cwnd    512
-    initial_packet_size 1350
-    
-    # The four fields below are advanced BBR control-loop tuning:
-    # they override package vars in sing-quic congestion_meta1 and only
-    # take effect with congestion_control bbr_meta_v1. Production testing
-    # on CN2 GIA found NO positive effect from these — sing-quic defaults
-    # are already well-tuned for stable international links and pushing
-    # them harder triggers BBR edge cases (overshoot, queue buildup,
-    # stale RTT). Leave commented unless you are testing on a different
-    # link profile and have a specific reason to deviate. See ADR-008.
-    #
-    # bbr_high_gain        3.5    # default 2.77
-    # bbr_pacing_gain      1.5    # default 1.25
-    # bbr_min_rtt_expiry   60s    # default 10s
-    # bbr_bandwidth_window 16     # default 10
-}
-
 # table ip nat {
 #     chain xproxy {
 #         type nat hook prerouting priority dstnat; policy accept;
@@ -92,8 +5,106 @@ tuic {
 #     }
 # }
 servers :2443 {
-    listener_wrappers {
-        trojan
-    }
     protocols h1 h2
+}
+
+caddyx {
+    # TUIC v5 proxy server configuration.
+    tuic {
+        # UDP address to listen on. TUIC shares this port with H3.
+        listen :2443
+
+        # Authorized users: <uuid> <password>
+        users {
+            {$TUIC_UUID:FED9B1D2-650F-4024-8FE5-D9D4D432F72F} {$TUIC_PASSWORD:o8EMT2lx14nObRzr}
+        }
+
+        # Congestion control algorithm: bbr | bbr_meta_v1 | cubic | new_reno
+        # bbr_meta_v1 is the only variant that supports the advanced bbr_*
+        # tuning fields below; switch to bbr (meta2) if you want default
+        # sing-quic behavior.
+        congestion_control bbr_meta_v1
+
+        # How long to wait for client authentication before falling back to H3.
+        auth_timeout 3s
+
+        # QUIC keep-alive PING interval. The server emits a PING frame
+        # at this cadence, keeping the connection alive at the QUIC
+        # transport layer. MaxIdleTimeout is set to 3x this value.
+        keepalive_period 10s
+
+        # Enable QUIC 0-RTT.
+        zero_rtt true
+
+        # Maximum UDP relay packet size before fragmentation.
+        max_udp_relay_packet_size 1200
+
+        # BBR / QUIC tuning.
+        #
+        # These two fields are the validated optimization for clean high-BDP
+        # links (CN2 GIA, ~150ms RTT, no packet loss). Production testing
+        # showed buffer health improving from 3-5s to ~20s on YouTube 4K
+        # with these alone — they affect transfer *startup state* without
+        # touching BBR's control loop, so they are pure wins.
+        #
+        # bbr_initial_cwnd works for both bbr and bbr_meta_v1.
+        # initial_packet_size is QUIC-level and applies to every algorithm.
+        #
+        # Three reference profiles (initial_cwnd / packet_size):
+        #   Profile A — conservative    128 / 1350
+        #   Profile B — moderate    ⭐   512 / 1350   (current)
+        #   Profile C — aggressive     2048 / 1350
+        #
+        # Defaults if omitted: 32 / 1280
+        # Valid ranges: [32, 8192] / [1200, 1452]
+        bbr_initial_cwnd    512
+        initial_packet_size 1350
+
+        # The four fields below are advanced BBR control-loop tuning:
+        # they override package vars in sing-quic congestion_meta1 and only
+        # take effect with congestion_control bbr_meta_v1. Production testing
+        # on CN2 GIA found NO positive effect from these — sing-quic defaults
+        # are already well-tuned for stable international links and pushing
+        # them harder triggers BBR edge cases (overshoot, queue buildup,
+        # stale RTT). Leave commented unless you are testing on a different
+        # link profile and have a specific reason to deviate. See ADR-008.
+        #
+        # bbr_high_gain        3.5    # default 2.77
+        # bbr_pacing_gain      1.5    # default 1.25
+        # bbr_min_rtt_expiry   60s    # default 10s
+        # bbr_bandwidth_window 16     # default 10
+    }
+
+    # Optional embedded Trojan-over-TLS server.
+    #
+    # The trojan server is built into caddyx specifically because
+    # imgk/caddy-trojan's listener_wrapper architecture breaks Caddy's
+    # normal TLS pipeline (it cannot inherit ALPN from the matched
+    # TLSConnectionPolicy, so probes hitting the listener with default
+    # h2/http/1.1 ALPN get a `no_application_protocol` alert and never
+    # see the camouflage page). caddyx's trojan does its own TLS
+    # termination using the same *tls.Config TUIC uses, then peeks the
+    # first 58 bytes of the decrypted stream:
+    #
+    #   - first 4 bytes all hex     → maybe trojan, read remaining 54
+    #   - hash matches a password   → relay TCP to target
+    #   - any other case            → rewind onto a virtual TCP listener
+    #                                 and serve via Caddy's HTTP handler
+    #
+    # Result: ALPN works correctly because we use Caddy's tls.Config
+    # verbatim; fallback works because we route through Caddy's normal
+    # HTTP handler chain.
+    #
+    # IMPORTANT: trojan listens on the configured `listen` address as
+    # TCP. If you do NOT set `listen` here, it reuses the TUIC listen
+    # port (TCP version). On Caddy's :443, this conflicts with Caddy's
+    # own HTTPS TCP listener — pick a different port (e.g. :8443) or
+    # move Caddy's HTTPS to a different port.
+    #
+    trojan {
+        listen :2443
+        passwords {
+            {$TROJAN_PASSWORD:thisisunsafe}
+        }
+    }
 }
