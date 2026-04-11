@@ -30,7 +30,7 @@ tuic {
     }
 
     # Congestion control algorithm: bbr | bbr_meta_v1 | cubic | new_reno
-    congestion_control bbr
+    congestion_control bbr_meta_v1
 
     # How long to wait for client authentication before falling back to H3.
     auth_timeout 3s
@@ -45,6 +45,44 @@ tuic {
 
     # Maximum UDP relay packet size before fragmentation.
     max_udp_relay_packet_size 1200
+
+    # Maximum UDP relay packet size before fragmentation.
+    max_udp_relay_packet_size 1200
+    
+    # BBR / QUIC tuning.
+    #
+    # These two fields are the validated optimization for clean high-BDP
+    # links (CN2 GIA, ~150ms RTT, no packet loss). Production testing
+    # showed buffer health improving from 3-5s to ~20s on YouTube 4K
+    # with these alone — they affect transfer *startup state* without
+    # touching BBR's control loop, so they are pure wins.
+    #
+    # bbr_initial_cwnd works for both bbr and bbr_meta_v1.
+    # initial_packet_size is QUIC-level and applies to every algorithm.
+    #
+    # Three reference profiles (initial_cwnd / packet_size):
+    #   Profile A — conservative    128 / 1350
+    #   Profile B — moderate    ⭐   512 / 1350   (current)
+    #   Profile C — aggressive     2048 / 1350
+    #
+    # Defaults if omitted: 32 / 1280
+    # Valid ranges: [32, 8192] / [1200, 1452]
+    bbr_initial_cwnd    512
+    initial_packet_size 1350
+    
+    # The four fields below are advanced BBR control-loop tuning:
+    # they override package vars in sing-quic congestion_meta1 and only
+    # take effect with congestion_control bbr_meta_v1. Production testing
+    # on CN2 GIA found NO positive effect from these — sing-quic defaults
+    # are already well-tuned for stable international links and pushing
+    # them harder triggers BBR edge cases (overshoot, queue buildup,
+    # stale RTT). Leave commented unless you are testing on a different
+    # link profile and have a specific reason to deviate. See ADR-008.
+    #
+    # bbr_high_gain        3.5    # default 2.77
+    # bbr_pacing_gain      1.5    # default 1.25
+    # bbr_min_rtt_expiry   60s    # default 10s
+    # bbr_bandwidth_window 16     # default 10
 }
 
 # table ip nat {
