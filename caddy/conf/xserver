@@ -33,9 +33,6 @@ caddyx {
         # transport layer. MaxIdleTimeout is set to 3x this value.
         keepalive_period 10s
 
-        # Enable QUIC 0-RTT.
-        zero_rtt true
-
         # Maximum UDP relay packet size before fragmentation.
         max_udp_relay_packet_size 1200
 
