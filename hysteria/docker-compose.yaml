@@ -1,6 +1,6 @@
 services:
   hysteria:
-    image: mritd/hysteria
+    image: tobyxdd/hysteria
     container_name: hysteria
     restart: always
     network_mode: "host"
