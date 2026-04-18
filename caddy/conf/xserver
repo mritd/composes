@@ -34,7 +34,7 @@ caddyx {
         keepalive_period 10s
 
         # Maximum UDP relay packet size before fragmentation.
-        max_udp_relay_packet_size 1200
+        max_udp_relay_packet_size 1350
 
         # BBR / QUIC tuning.
         #
