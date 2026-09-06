@@ -14,14 +14,57 @@ services:
       - config:/config
       - data:/data
     ports:
-      - "80:80"
-      - "443:443"
+      # Caddy HTTP, HTTPS and HTTP/3.
+      - "80:80/tcp"
+      - "443:443/tcp"
       - "443:443/udp"
-      - "2443:2443"
+
+      # Trojan: main entry 2443; additional entries 6443 and 2311-2318.
+      - "2443:2443/tcp"
+      - "6443:2443/tcp"
+      - "2311:2443/tcp"
+      - "2312:2443/tcp"
+      - "2313:2443/tcp"
+      - "2314:2443/tcp"
+      - "2315:2443/tcp"
+      - "2316:2443/tcp"
+      - "2317:2443/tcp"
+      - "2318:2443/tcp"
+
+      # AnyTLS: main entry 3443; additional entries 3311-3318.
+      - "3443:3443/tcp"
+      - "3311:3443/tcp"
+      - "3312:3443/tcp"
+      - "3313:3443/tcp"
+      - "3314:3443/tcp"
+      - "3315:3443/tcp"
+      - "3316:3443/tcp"
+      - "3317:3443/tcp"
+      - "3318:3443/tcp"
+
+      # TUIC: main entry 2443; port-hopping entries 2311-2318.
       - "2443:2443/udp"
-      - "3443:3443"
+      - "2311:2443/udp"
+      - "2312:2443/udp"
+      - "2313:2443/udp"
+      - "2314:2443/udp"
+      - "2315:2443/udp"
+      - "2316:2443/udp"
+      - "2317:2443/udp"
+      - "2318:2443/udp"
+
+      # Hysteria2: main entry 3443; port-hopping entries 3311-3318.
       - "3443:3443/udp"
-      - "6443:2443"
+      - "3311:3443/udp"
+      - "3312:3443/udp"
+      - "3313:3443/udp"
+      - "3314:3443/udp"
+      - "3315:3443/udp"
+      - "3316:3443/udp"
+      - "3317:3443/udp"
+      - "3318:3443/udp"
+
+      # KUIC. TCP 6443 above is a Trojan entry, not KUIC.
       - "6443:6443/udp"
     sysctls:
       net.ipv4.udp_rmem_min: "16384"

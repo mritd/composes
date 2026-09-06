@@ -1,24 +1,28 @@
 caddyx {
     tls_server_name {$CADDYX_DOMAIN:example.com}
 
-    tuic {
-        listen :2443
-        users {
-            {$TUIC_UUID:FED9B1D2-650F-4024-8FE5-D9D4D432F72F} {$TUIC_PASSWORD:thisisunsafe}
-        }
-
-        congestion_control bbr_meta_v1
-        auth_timeout 3s
-        keepalive_period 10s
-        max_udp_relay_packet_size 1350
-        bbr_initial_cwnd 512
-        initial_packet_size 1350
-    }
-
     trojan {
         listen :2443
         passwords {
             {$TROJAN_PASSWORD:thisisunsafe}
+        }
+
+        brutal {
+            enabled true
+            download 300mbps
+            cwnd_gain 15
+        }
+    }
+
+    anytls {
+        listen :3443
+
+        password {$ANYTLS_PASSWORD:thisisunsafe}
+
+        brutal {
+            enabled true
+            download 300mbps
+            cwnd_gain 15
         }
     }
 
@@ -35,17 +39,19 @@ caddyx {
         initial_packet_size 1350
     }
 
-    anytls {
-        listen :3443
-
-        password {$ANYTLS_PASSWORD:thisisunsafe}
-
-        brutal {
-            enabled true
-            download 1gbps
-            cwnd_gain 15
+    tuic {
+        listen :2443
+        users {
+            {$TUIC_UUID} {$TUIC_PASSWORD:thisisunsafe}
         }
+
+        congestion_control bbr
+        auth_timeout 3s
+        keepalive_period 10s
+        max_udp_relay_packet_size 1350
+        initial_packet_size 1350
     }
+
 
     kuic {
         listen :6443
